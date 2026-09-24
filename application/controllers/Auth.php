@@ -1,17 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends CI_Controller
+{
 
-	public function index()
-	{
+    public function index()
+    {
         $data = [
-			'judul' => 'login'
-		];
-		$this->load->view('login');
-	}
+            'judul' => 'login'
+        ];
+        $this->load->view('login', $data);
+    }
 
-	public function login()
+    public function login()
     {
         $user = $this->input->post('username');
         $pass = $this->input->post('password');
@@ -19,9 +20,8 @@ class Auth extends CI_Controller {
         $data = $this->db->get()->row();
         if ($data == null) {
             $this->session->set_flashdata('alert', '
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                    Username Tidak Ditemukan!!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="p-3 mb-4 text-sm text-red-800 rounded-md bg-red-50 border border-red-200">
+                 <strong>Gagal!</strong> Username tidak ditemukan.
             </div>
             ');
             redirect('auth');
@@ -32,16 +32,15 @@ class Auth extends CI_Controller {
                 'username' => $data->username,
                 'id_user' => $data->id_user,
                 'nama_pengguna' => $data->namaLengkap,
-                'email' => $data->email,                
+                'email' => $data->email,
                 'role' => $data->role,
             ];
             $this->session->set_userdata($data);
             redirect('welcome');
         } else {
             $this->session->set_flashdata('alert', '
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                    Password SALAH!!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="p-3 mb-4 text-sm text-red-800 rounded-md bg-red-50 border border-red-200">
+                <strong>Gagal!</strong> Password Salah
             </div>
             ');
             redirect('auth');

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title><?= $judul ?></title>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                             </div>
                             </p>
                         </div>
-                        <?php if($this->session->flashdata('alert')) ?>
+                        <?= $this->session->flashdata('alert')     ?>
                         <div class="mt-8">
                             <div class="mt-6">
                                 <form action="<?= base_url('auth/login') ?>" method="POST" class="space-y-6">
