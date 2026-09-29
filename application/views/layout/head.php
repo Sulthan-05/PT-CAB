@@ -434,7 +434,7 @@
             <ul class="sidebar-menu">
                 <li><a href="#" class="active">Dashboard</a></li>
                 <li><a href="#">Website</a></li>
-                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="<?= base_url('admin/tentang') ?>">Tentang Kami</a></li>
                 <li><a href="#">Produk</a></li>
                 <li><a href="#">Informasi</a></li>
                 <li><a href="#">Jajaran Anggota Struktur</a></li>
