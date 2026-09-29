@@ -35,7 +35,7 @@
                             </div>
                             </p>
                         </div>
-                        <?= $this->session->flashdata('alert')     ?>
+                        <?= $this->session->flashdata('alert')?>
                         <div class="mt-8">
                             <div class="mt-6">
                                 <form action="<?= base_url('auth/login') ?>" method="POST" class="space-y-6">
