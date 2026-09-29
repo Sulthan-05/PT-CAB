@@ -28,112 +28,205 @@
         }
 
         /* ================= SIDEBAR ================= */
-        .sidebar {
-            width: 260px;
-            background-color: #0b3b8c;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
+        /* SIDEBAR */
+		.sidebar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 288px;
+			height: 100vh;
+			background: #003178;
+			display: flex;
+			flex-direction: column;
+			z-index: 1000;
+			overflow: hidden;
+		}
 
-        /* Logo Area */
-        .sidebar-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 25px 20px;
-        }
+		.sidebar-header {
+			height: 95px;
+			padding: 0 16px;
+			background: #0D47A1;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			flex-shrink: 0;
+		}
 
-        .logo-box {
-            background-color: #ffffff;
-            color: #0b3b8c;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            flex-shrink: 0;
-        }
+		.sidebar-logo {
+			width: 48px;
+			height: 48px;
+			background: #FEA619;
+			color: #684000;
+			border-radius: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 17px;
+			font-weight: 800;
+			flex-shrink: 0;
+		}
 
-        .brand-text h2 {
-            font-size: 13px;
-            font-weight: 600;
-            line-height: 1.2;
-        }
+		.brand-text {
+			min-width: 0;
+		}
 
-        .brand-text p {
-            font-size: 10px;
-            color: #a0b4d6;
-            letter-spacing: 1px;
-            margin-top: 2px;
-        }
+		.brand-text h2 {
+			margin: 0;
+			color: #FFFFFF;
+			font-size: 15px;
+			line-height: 20px;
+			font-weight: 700;
+		}
 
-        /* Menu Navigasi */
-        .sidebar-menu {
-            list-style: none;
-            padding: 0 15px;
-            margin-top: 10px;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
+		.brand-text p {
+			margin: 3px 0 0;
+			color: #FFDDB8;
+			font-size: 10px;
+			line-height: 14px;
+			font-weight: 700;
+			letter-spacing: .6px;
+		}
 
-        .sidebar-menu li {
-            margin-bottom: 5px;
-        }
+		.sidebar-menu {
+			flex: 1;
+			padding: 16px 8px 8px;
+			overflow-y: auto;
+		}
 
-        .sidebar-menu a {
-            display: block;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 400;
-            padding: 12px 15px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
+		.sidebar-menu::-webkit-scrollbar {
+			width: 4px;
+		}
 
-        .sidebar-menu a.active {
-            background-color: #f59e0b;
-            font-weight: 600;
-            color: #1a202c;
-        }
+		.sidebar-menu::-webkit-scrollbar-thumb {
+			background: rgba(255,255,255,.18);
+			border-radius: 10px;
+		}
 
-        .sidebar-menu a:hover:not(.active) {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+		.sidebar-menu ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
 
-        /* Tombol Logout */
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+		.sidebar-menu > ul > li {
+			margin-bottom: 3px;
+		}
 
-        .sidebar-footer a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+		.sidebar-menu a {
+			text-decoration: none;
+		}
 
-        .sidebar-footer .dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-        }
+		.sidebar-menu > ul > li > a,
+		.sidebar-menu .dropdown-toggle {
+			min-height: 36px;
+			padding: 9px 16px;
+			display: flex;
+			align-items: center;
+			width: 100%;
+			border-radius: 10px;
+			color: #E2E7FF;
+			background: transparent;
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 18px;
+			transition: .2s ease;
+		}
+
+		.sidebar-menu > ul > li > a:hover,
+		.sidebar-menu .dropdown-toggle:hover {
+			background: rgba(30,64,175,.45);
+			color: #FFFFFF;
+		}
+
+		.sidebar-menu .dropdown-toggle {
+			cursor: pointer;
+		}
+
+		/* DROPDOWN */
+		.submenu {
+			list-style: none;
+			margin: 0;
+			padding: 4px 0 2px;
+			max-height: 0;
+			overflow: hidden;
+			opacity: 0;
+			transition: max-height .25s ease, opacity .2s ease;
+		}
+
+		.menu-dropdown.open .submenu {
+			max-height: 180px;
+			opacity: 1;
+		}
+
+		.menu-dropdown.open > .dropdown-toggle {
+			background: #FEA619;
+			color: #684000;
+			font-size: 16px;
+			font-weight: 700;
+		}
+
+		.submenu li {
+			padding: 3px 0;
+		}
+
+		.submenu a {
+			display: flex;
+			align-items: center;
+			width: 223px;
+			min-height: 30px;
+			margin-left: auto;
+			padding: 6px 16px;
+			border-radius: 12px;
+			background: rgba(30,64,175,.40);
+			color: #E2E7FF;
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 18px;
+			transition: .2s ease;
+		}
+
+		.submenu a:hover,
+		.submenu a.active {
+			background: rgba(30,64,175,.70);
+			color: #FFFFFF;
+		}
+
+		/* FOOTER SIDEBAR */
+		.sidebar-footer {
+			width: 100%;
+			padding: 8px;
+			flex-shrink: 0;
+		}
+
+		.sidebar-footer a {
+			width: 100%;
+			min-height: 56px;
+			padding: 16px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background: rgba(13,71,161,.80);
+			border-radius: 12px;
+			color: #D9E2FF;
+			text-decoration: none;
+			font-size: 15px;
+			font-weight: 700;
+			line-height: 20px;
+			transition: .2s ease;
+		}
+
+		.sidebar-footer a:hover {
+			background: rgba(13,71,161,1);
+			color: #FFFFFF;
+		}
+
+		.logout-status {
+			width: 9px;
+			height: 9px;
+			background: #6FFBBE;
+			border-radius: 50%;
+			flex-shrink: 0;
+		}
 
         /* ================= KONTEN UTAMA ================= */
         .main-content {
@@ -420,35 +513,135 @@
     <div class="overlay" id="overlay"></div>
 
     <!-- SIDEBAR KIRI -->
-    <aside class="sidebar" id="sidebar">
-        <div>
-            <div class="sidebar-header">
-                <div class="logo-box">CAB</div>
-                <div class="brand-text">
-                    <h2>Citra Abadi Bermartabat</h2>
-                    <p>ADMIN</p>
-                </div>
-            </div>
+    <!-- SIDEBAR -->
+	<aside class="sidebar" id="sidebar">
 
-            <ul class="sidebar-menu">
-                <li><a href="#" class="active">Dashboard</a></li>
-                <li><a href="#">Website</a></li>
-                <li><a href="#">Tentang Kami</a></li>
-                <li><a href="#">Produk</a></li>
-                <li><a href="#">Informasi</a></li>
-                <li><a href="#">Jajaran Anggota Struktur</a></li>
-                <li><a href="#">Fasilitas</a></li>
-                <li><a href="#">Kontak</a></li>
-                <li><a href="#">Story</a></li>
-            </ul>
-        </div>
+		<div class="sidebar-header">
+			<div class="sidebar-logo">CAB</div>
 
-        <div class="sidebar-footer">
-            <a href="<?= base_url('auth/logout') ?>">
-                LOGOUT
-            </a>
-        </div>
-    </aside>
+			<div class="brand-text">
+				<h2>Citra Abadi<br>Bermartabat</h2>
+				<p>ADMIN</p>
+			</div>
+		</div>
+
+		<nav class="sidebar-menu">
+			<ul>
+
+				<li>
+					<a href="<?= base_url('admin/dashboard'); ?>">
+						Dashboard
+					</a>
+				</li>
+
+				<li class="menu-dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle">
+						Website
+					</a>
+
+					<ul class="submenu">
+						<li>
+							<a href="<?= base_url('admin/website/beranda'); ?>">
+								Beranda
+							</a>
+						</li>
+						<li>
+							<a href="<?= base_url('admin/website/header'); ?>">
+								Header
+							</a>
+						</li>
+						<li>
+							<a href="<?= base_url('admin/website/footer'); ?>">
+								Footer
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="menu-dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle">
+						Tentang Kami
+					</a>
+
+					<ul class="submenu">
+						<li>
+							<a href="<?= base_url('admin/profil-perusahaan'); ?>">
+								Profil Perusahaan
+							</a>
+						</li>
+						<li>
+							<a href="<?= base_url('admin/tentang-kami'); ?>">
+								Tentang Kami
+							</a>
+						</li>
+						<li>
+							<a href="<?= base_url('admin/visi-misi'); ?>">
+								Visi &amp; Misi
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="menu-dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle">
+						Produk
+					</a>
+
+					<ul class="submenu">
+						<li>
+							<a href="<?= base_url('admin/kategori-produk'); ?>">
+								Kategori Produk
+							</a>
+						</li>
+						<li>
+							<a href="<?= base_url('admin/produk'); ?>">
+								Produk
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="<?= base_url('admin/informasi'); ?>">
+						Informasi
+					</a>
+				</li>
+
+				<li>
+					<a href="<?= base_url('admin/jajaran-struktur'); ?>">
+						Jajaran Anggota Struktur
+					</a>
+				</li>
+
+				<li>
+					<a href="<?= base_url('admin/fasilitas'); ?>">
+						Fasilitas
+					</a>
+				</li>
+
+				<li>
+					<a href="<?= base_url('admin/kontak'); ?>">
+						Kontak
+					</a>
+				</li>
+
+				<li>
+					<a href="<?= base_url('admin/story'); ?>">
+						Story
+					</a>
+				</li>
+
+			</ul>
+		</nav>
+
+		<div class="sidebar-footer">
+			<a href="<?= base_url('auth/logout'); ?>">
+				<span>LOGOUT</span>
+				<span class="logout-status"></span>
+			</a>
+		</div>
+
+	</aside>
 
     <!-- KONTEN UTAMA KANAN -->
     <main class="main-content">
