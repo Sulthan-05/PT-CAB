@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <!-- Import Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Import Google Font (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Reset Dasar */
         * {
@@ -136,7 +138,8 @@
         /* ================= KONTEN UTAMA ================= */
         .main-content {
             flex-grow: 1;
-            margin-left: 260px; /* Memberi ruang untuk sidebar fixed */
+            margin-left: 260px;
+            /* Memberi ruang untuk sidebar fixed */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -249,7 +252,7 @@
 
         .stat-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .stat-info {
@@ -285,9 +288,21 @@
         }
 
         /* Warna Ikon */
-        .icon-fasilitas { background-color: #fcece1; color: #d98e4a; }
-        .icon-informasi, .icon-contact { background-color: #d4e6e0; color: #2b6b5c; }
-        .icon-produk { background-color: #e2e6fa; color: #4a5ec7; }
+        .icon-fasilitas {
+            background-color: #fcece1;
+            color: #d98e4a;
+        }
+
+        .icon-informasi,
+        .icon-contact {
+            background-color: #d4e6e0;
+            color: #2b6b5c;
+        }
+
+        .icon-produk {
+            background-color: #e2e6fa;
+            color: #4a5ec7;
+        }
 
         /* Overlay untuk mobile */
         .overlay {
@@ -297,12 +312,12 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
 
         /* ================= RESPONSIVE ================= */
-        
+
         /* Tablet & HP (Lebar < 992px) */
         @media (max-width: 992px) {
             .sidebar {
@@ -398,6 +413,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Overlay untuk mobile saat sidebar terbuka -->
@@ -413,7 +429,7 @@
                     <p>ADMIN</p>
                 </div>
             </div>
-            
+
             <ul class="sidebar-menu">
                 <li><a href="#" class="active">Dashboard</a></li>
                 <li><a href="#">Website</a></li>
@@ -426,17 +442,17 @@
                 <li><a href="#">Story</a></li>
             </ul>
         </div>
-        
+
         <div class="sidebar-footer">
             <a href="<?= base_url('auth/logout') ?>">
-                LOGOUT                
+                LOGOUT
             </a>
         </div>
     </aside>
 
     <!-- KONTEN UTAMA KANAN -->
     <main class="main-content">
-        
+
         <!-- Top Bar (Search & Profil) -->
         <header class="top-bar">
             <div style="display: flex; align-items: center; width: 100%; gap: 15px;">
@@ -450,78 +466,4 @@
             </div>
             <button class="btn-profil">Profil</button>
         </header>
-
-        <!-- Area Konten -->
-        <div class="content-area">
-            
-            <!-- Banner Biru -->
-            <div class="banner">
-                <h1>Selamat Datang Di Sistem Pengelolaan PT Citra Abadi Bermartabat</h1>
-            </div>
-
-            <!-- Grid Statistik -->
-            <div class="stats-grid">
-                
-                <div class="stat-item">
-                    <div class="stat-info">
-                        <span class="stat-title">Total Fasilitas</span>
-                        <span class="stat-value">121</span>
-                    </div>
-                    <div class="stat-icon icon-fasilitas">
-                        <i class="fa-solid fa-truck"></i>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-info">
-                        <span class="stat-title">Total Informasi</span>
-                        <span class="stat-value">11</span>
-                    </div>
-                    <div class="stat-icon icon-informasi">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-info">
-                        <span class="stat-title">Total Contact</span>
-                        <span class="stat-value">5</span>
-                    </div>
-                    <div class="stat-icon icon-contact">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-info">
-                        <span class="stat-title">Total Produk</span>
-                        <span class="stat-value">23</span>
-                    </div>
-                    <div class="stat-icon icon-produk">
-                        <i class="fa-solid fa-percent"></i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <!-- Script untuk Toggle Sidebar di Mobile -->
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-            overlay.style.display = 'none';
-        });
-    </script>
-
-</body>
-</html>
+        
