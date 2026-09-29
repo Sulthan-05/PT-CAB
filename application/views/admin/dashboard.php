@@ -428,9 +428,8 @@
         </div>
         
         <div class="sidebar-footer">
-            <a href="#">
-                LOGOUT
-                <span class="dot"></span>
+            <a href="<?= base_url('auth/logout') ?>">
+                LOGOUT                
             </a>
         </div>
     </aside>

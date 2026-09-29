@@ -36,7 +36,7 @@ class Auth extends CI_Controller
                 'role' => $data->role,
             ];
             $this->session->set_userdata($data);
-            redirect('welcome');
+            redirect('home');
         } else {
             $this->session->set_flashdata('alert', '
             <div class="p-3 mb-4 text-sm text-red-800 rounded-md bg-red-50 border border-red-200">
@@ -45,6 +45,11 @@ class Auth extends CI_Controller
             ');
             redirect('auth');
         }
+    }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect('auth');
     }
 
 }
