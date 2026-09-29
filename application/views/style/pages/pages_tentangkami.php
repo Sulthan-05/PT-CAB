@@ -1,439 +1,571 @@
-<div style="width: 1280px; position: relative; background: linear-gradient(105deg, #0A3578 0%, #0D47A1 12%, white 32%, white 52%, #FEF08A 68%, #F59E0B 82%, #0284C7 100%), white; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-  <div style="align-self: stretch; min-height: 800px; padding-top: 144px; background: radial-gradient(ellipse 314.43% 93.75% at 12.00% 10.00%, rgba(245, 158, 11, 0.28) 0%, rgba(245, 158, 11, 0) 35%), radial-gradient(ellipse 250.74% 74.76% at 88.00% 30.00%, rgba(13, 71, 161, 0.22) 0%, rgba(13, 71, 161, 0) 42%), radial-gradient(ellipse 234.00% 69.77% at 15.00% 65.00%, rgba(254, 240, 138, 0.45) 0%, rgba(254, 240, 138, 0) 40%), radial-gradient(ellipse 297.50% 88.70% at 85.00% 85.00%, rgba(2, 132, 199, 0.25) 0%, rgba(2, 132, 199, 0) 45%), linear-gradient(129deg, #F0F6FF 0%, white 28%, #FEF9C3 55%, #FFFBEB 75%, #E0F2FE 100%); flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-      <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; background: rgba(255, 255, 255, 0.90); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-bottom: 1px #FEF3C7 solid; backdrop-filter: blur(2px); flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-        <div style="width: 100%; max-width: 1280px; padding-left: 24px; padding-right: 24px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-          <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-            <div style="justify-content: flex-start; align-items: center; gap: 8px; display: flex">
-              <div style="width: 10px; height: 10px; position: relative; justify-content: flex-start; align-items: flex-start; display: flex">
-                <div style="width: 10px; height: 10px; left: 0px; top: 0px; position: absolute; opacity: 0.75; background: #FBBF24; border-radius: 9999px"></div>
-                <div style="width: 10px; height: 10px; background: #F59E0B; border-radius: 9999px"></div>
-              </div>
-              <div style="justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 800; line-height: 24px; word-wrap: break-word">Story Operasional PT Citra  Abadi Bermatrabat </div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PT Citra Abadi Bermartabat</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  /* ===== HERO BG ===== */
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 314% 94% at 12% 10%, rgba(245,158,11,.28) 0%, rgba(245,158,11,0) 35%),
+      radial-gradient(ellipse 251% 75% at 88% 30%, rgba(13,71,161,.22) 0%, rgba(13,71,161,0) 42%),
+      radial-gradient(ellipse 234% 70% at 15% 65%, rgba(254,240,138,.45) 0%, rgba(254,240,138,0) 40%),
+      radial-gradient(ellipse 298% 89% at 85% 85%, rgba(2,132,199,.25) 0%, rgba(2,132,199,0) 45%),
+      linear-gradient(129deg, #F0F6FF 0%, #fff 28%, #FEF9C3 55%, #FFFBEB 75%, #E0F2FE 100%);
+  }
+
+  /* ===== NAVBAR ===== */
+  .nav-top-bar {
+    background: linear-gradient(90deg,#0A3578 0%,#0D47A1 50%,#1565C0 100%);
+    height: 23px;
+    border-bottom: 1px solid rgba(251,191,36,.4);
+  }
+  .navbar-cab {
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 20px rgba(13,71,161,.08);
+    border-bottom: 1px solid rgba(253,230,138,.5);
+  }
+  .nav-link-cab { color:#475569; font-weight:700; font-size:14px; }
+  .nav-link-cab.active { color:#FEA619; }
+  .btn-login {
+    background:#FEA619; color:#0D47A1; font-weight:700; font-size:14px;
+    border-radius:0; padding:.6rem 1.2rem;
+  }
+
+  /* ===== STATUS OPERASIONAL ===== */
+  .status-strip {
+    background: rgba(255,255,255,.9);
+    backdrop-filter: blur(2px);
+    border-bottom: 1px solid #FEF3C7;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  .machine-item { width: 110px; position: relative; }
+  .machine-badge {
+    width: 76px; height: 76px; border-radius: 50%;
+    padding: 3px; display:inline-flex;
+    align-items:center; justify-content:center;
+  }
+  .machine-badge .inner {
+    background:#fff; border-radius:50%; padding:2px; width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .machine-badge .inner img {
+    width:64px; height:64px; border-radius:50%; object-fit:cover;
+  }
+  .grad-amber  { background: linear-gradient(45deg,#F59E0B 0%,#0D47A1 50%,#FBBF24 100%); }
+  .grad-blue   { background: linear-gradient(45deg,#0D47A1 0%,#1E40AF 50%,#F59E0B 100%); }
+  .grad-amber2 { background: linear-gradient(45deg,#F59E0B 0%,#FBBF24 50%,#0D47A1 100%); }
+  .grad-blue2  { background: linear-gradient(45deg,#0D47A1 0%,#1565C0 50%,#F59E0B 100%); }
+  .grad-amber3 { background: linear-gradient(45deg,#F59E0B 0%,#0D47A1 50%,#FBBF24 100%); }
+  .grad-blue3  { background: linear-gradient(45deg,#0D47A1 0%,#F59E0B 50%,#1565C0 100%); }
+  .live-tag {
+    position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+    background:#DC2626; color:#fff; font-size:9px; font-weight:700;
+    letter-spacing:.45px; padding:2px 10px; border-radius:4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  }
+
+  /* ===== CAROUSEL ===== */
+  .section-blue {
+    background: linear-gradient(166deg,#0D47A1 0%,#1565C0 50%,#0A2F6C 100%);
+  }
+  .hero-img {
+    height: 380px;
+    object-fit: cover;
+    object-position: center;
+  }
+  @media (max-width: 768px) {
+    .hero-img { height: 220px; }
+  }
+
+  /* ===== HERO TEXT ===== */
+  .hero-title { color:#fff; font-weight:800; font-size:48px; line-height:1.25; }
+  .hero-sub   { color: rgba(219,234,254,.9); font-size:16px; line-height:26px; }
+  @media (max-width: 768px) {
+    .hero-title { font-size:30px; }
+    .hero-sub { font-size:14px; line-height:22px; }
+  }
+
+  .section-tag {
+    background: rgba(255,255,255,.1);
+    border:1px solid rgba(252,211,77,.4);
+    border-radius:9999px; padding:4px 16px;
+    color:#FDE68A; font-size:12px; font-weight:700;
+    letter-spacing:.3px; text-transform:uppercase;
+  }
+
+  .btn-cta {
+    background: linear-gradient(90deg,#F59E0B 0%,#FBBF24 50%,#F59E0B 100%);
+    border:1px solid rgba(252,211,77,.7);
+    color:#0F172A; font-weight:700; border-radius:12px;
+    padding:14px 32px;
+    box-shadow: 0 4px 6px -4px rgba(0,0,0,.1), 0 10px 15px -3px rgba(0,0,0,.1);
+  }
+
+  /* ===== STAT CARDS ===== */
+  .stat-card {
+    border-radius:12px; padding:16px;
+    border:1px solid rgba(252,211,77,.4);
+    box-shadow: 0 4px 6px -4px rgba(0,0,0,.1), 0 10px 15px -3px rgba(0,0,0,.1);
+  }
+  .stat-1 { background: linear-gradient(174deg, rgba(255,255,255,.95) 0%, rgba(239,246,255,.9) 100%); }
+  .stat-2 { background: linear-gradient(174deg, rgba(255,255,255,.95) 0%, rgba(255,251,235,.9) 100%); }
+  .stat-3 { background: linear-gradient(174deg, rgba(255,255,255,.95) 0%, rgba(236,253,245,.9) 100%); }
+  .stat-value-1 { color:#0D47A1; }
+  .stat-value-2 { color:#D97706; }
+  .stat-value-3 { color:#047857; }
+
+  /* ===== ABOUT / CONTACT / VISI-MISI ===== */
+  .about-section {
+    background: linear-gradient(142deg, rgba(224,242,254,.9) 0%, rgba(255,255,255,.98) 35%, rgba(254,249,195,.85) 68%, rgba(245,158,11,.22) 88%, rgba(13,71,161,.18) 100%);
+  }
+  .about-card {
+    background: #fff;
+    border:1px solid rgba(253,230,138,.8);
+    border-radius:16px;
+  }
+  .contact-card {
+    background: linear-gradient(90deg,#fff 0%, rgba(239,246,255,.4) 50%, rgba(255,251,235,.4) 100%);
+    border:2px solid rgba(252,211,77,.8);
+    border-radius:16px;
+    box-shadow: 0 8px 10px -6px rgba(0,0,0,.1), 0 20px 25px -5px rgba(0,0,0,.1);
+  }
+  .btn-wa {
+    background: linear-gradient(90deg,#059669 0%,#0F766E 100%);
+    border:1px solid #34D399;
+    color:#fff; font-weight:700; border-radius:12px;
+    padding:14px 24px;
+    box-shadow: 0 2px 4px -2px rgba(0,0,0,.1), 0 4px 6px -1px rgba(0,0,0,.1);
+  }
+
+  .visi-card {
+    background: linear-gradient(129deg,#fff 0%, rgba(239,246,255,.4) 50%, #fff 100%);
+    border:1px solid rgba(253,230,138,.7);
+    border-radius:16px;
+  }
+  .visi-card.amber {
+    background: linear-gradient(129deg,#fff 0%, rgba(255,251,235,.3) 50%, #fff 100%);
+  }
+  .visi-icon {
+    width:56px; height:56px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    color:#FCD34D;
+  }
+  .visi-icon.blue { background: linear-gradient(135deg,#0D47A1 0%,#1565C0 100%); }
+  .visi-icon.amber { background: linear-gradient(135deg,#F59E0B 0%,#D97706 100%); color:#fff; }
+
+  /* ===== FOOTER ===== */
+  footer.footer-cab {
+    background: linear-gradient(180deg,#0A2F6C 0%,#0D47A1 50%,#081C3D 100%);
+    border-top:2px solid #FBBF24;
+    color:#fff;
+  }
+  .footer-title { color:#fff; font-weight:700; font-size:16px; }
+  .footer-text  { color: rgba(219,234,254,.8); font-size:14px; line-height:22.75px; }
+  .footer-badge {
+    background: rgba(255,255,255,.1);
+    border:1px solid rgba(251,191,36,.4);
+    border-radius:4px; padding:4px 8px;
+    color:#FDE68A; font-size:10px; font-weight:600;
+  }
+  .footer-bar {
+    width:6px; height:16px; border-radius:9999px;
+    background:#FBBF24; display:inline-block;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="sticky-top">
+  <div class="nav-top-bar"></div>
+  <nav class="navbar-cab">
+    <div class="container-fluid px-3 mx-auto" style="max-width:1280px;">
+      <div class="d-flex align-items-center justify-content-between py-2" style="min-height:80px;">
+
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://placehold.co/68x68" width="68" height="68" alt="Logo">
+          <div>
+            <div class="fw-bold" style="color:#0D47A1; font-size:16px; line-height:20px;">PT CAB</div>
+            <div style="color:#64748B; font-size:10px; font-weight:500; letter-spacing:.4px;">
+              Pabrik &amp; Distribusi Beras Modern
             </div>
           </div>
-          <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; overflow: hidden; justify-content: flex-start; align-items: center; gap: 24px; display: inline-flex">
-            <div style="width: 121.25px; height: 108px; position: relative">
-              <div style="padding-top: 4px; left: 21.53px; top: 74px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-                  <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #1E293B; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">QC Mutu Lab</div>
-                </div>
-              </div>
-              <div style="padding: 3px; left: 23.63px; top: 0px; position: absolute; background: linear-gradient(45deg, #F59E0B 0%, #0D47A1 50%, #FBBF24 100%); border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="width: 74px; height: 74px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10); border-radius: 9999px"></div>
-                <div style="padding: 2px; background: white; border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="width: 64px; height: 64px; position: relative; background: rgba(255, 255, 255, 0); box-shadow: 0px 0px 0px 1px #FDE68A; overflow: hidden; border-radius: 9999px; flex-direction: column; justify-content: center; align-items: flex-start; display: flex">
-                    <img style="align-self: stretch; flex: 1 1 0; position: relative" src="https://placehold.co/64x64" />
-                    <div style="width: 64px; left: 0px; top: 44px; position: absolute; background: #DC2626; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-                      <div style="width: 64px; height: 20px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.10), 0px 1px 3px rgba(0, 0, 0, 0.10)"></div>
-                      <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 9px; font-family: Plus Jakarta Sans; font-weight: 700; text-transform: uppercase; line-height: 20px; letter-spacing: 0.45px; word-wrap: break-word">LIVE</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        </div>
+
+        <ul class="nav d-none d-lg-flex align-items-center gap-4 mb-0">
+          <li class="nav-item"><a class="nav-link nav-link-cab active p-1" href="#">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-cab p-1" href="#">Tentang Kami</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-cab p-1" href="#">Produk</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-cab p-1" href="#">Informasi</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-cab p-1" href="#">Fasilitas</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-cab p-1" href="#">Jajaran Struktur</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-cab p-1" href="#">Kontak Kami</a></li>
+        </ul>
+
+        <a href="#" class="btn btn-login">Login</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<main class="hero-bg">
+
+  <!-- Status Operasional -->
+  <section class="status-strip py-3">
+    <div class="container-fluid px-3 mx-auto" style="max-width:1280px;">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="rounded-circle d-inline-block" style="width:10px;height:10px;background:#F59E0B;"></span>
+        <span style="color:#0D47A1; font-weight:800; font-size:16px;">Story Operasional PT Citra Abadi Bermartabat</span>
+      </div>
+
+      <div class="d-flex flex-wrap gap-4 justify-content-start">
+        <div class="machine-item text-center">
+          <div class="position-relative d-inline-block">
+            <span class="machine-badge grad-amber">
+              <span class="inner"><img src="https://placehold.co/64x64" alt=""></span>
+            </span>
+            <span class="live-tag">LIVE</span>
+          </div>
+          <div class="mt-2 fw-bold" style="color:#1E293B; font-size:12px;">QC Mutu Lab</div>
+        </div>
+        <div class="machine-item text-center">
+          <span class="machine-badge grad-blue">
+            <span class="inner"><img src="https://placehold.co/64x64" alt=""></span>
+          </span>
+          <div class="mt-2 fw-semibold" style="color:#1E293B; font-size:12px;">Giling Subang Line 1</div>
+        </div>
+        <div class="machine-item text-center">
+          <span class="machine-badge grad-amber2">
+            <span class="inner"><img src="https://placehold.co/64x64" alt=""></span>
+          </span>
+          <div class="mt-2 fw-semibold" style="color:#1E293B; font-size:12px;">Pecah Kulit (PK)</div>
+        </div>
+        <div class="machine-item text-center">
+          <span class="machine-badge grad-blue2">
+            <span class="inner"><img src="https://placehold.co/64x64" alt=""></span>
+          </span>
+          <div class="mt-2 fw-semibold" style="color:#1E293B; font-size:12px;">Packing Line Karung</div>
+        </div>
+        <div class="machine-item text-center">
+          <span class="machine-badge grad-amber3">
+            <span class="inner"><img src="https://placehold.co/64x64" alt=""></span>
+          </span>
+          <div class="mt-2 fw-semibold" style="color:#1E293B; font-size:12px;">Muat Tronton Cipinang</div>
+        </div>
+        <div class="machine-item text-center">
+          <span class="machine-badge grad-blue3">
+            <span class="inner"><img src="https://placehold.co/64x64" alt=""></span>
+          </span>
+          <div class="mt-2 fw-semibold" style="color:#1E293B; font-size:12px;">Timbang 60 Ton</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carousel Hero (diperkecil) -->
+  <section class="section-blue position-relative overflow-hidden">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://placehold.co/1280x500" class="d-block w-100 hero-img" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+          <img src="https://placehold.co/1280x500" class="d-block w-100 hero-img" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+          <img src="https://placehold.co/1280x500" class="d-block w-100 hero-img" alt="Slide 3">
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Hero Text / CTA -->
+  <section class="section-blue py-5 position-relative overflow-hidden">
+    <div class="container mx-auto" style="max-width:1280px;">
+
+      <span class="section-tag d-inline-flex align-items-center gap-2 mb-4">
+        <span class="rounded-circle d-inline-block" style="width:10px;height:10px;background:#FBBF24;"></span>
+        PT CITRA ABADI BERMARTABAT
+      </span>
+
+      <h1 class="hero-title mb-3">
+        Pusat Industri Penggilingan Padi &amp; Distribusi Beras Berkualitas Terpadu
+      </h1>
+
+      <p class="hero-sub mb-4">
+        Menggabungkan presisi teknologi sortasi optik Jepang dengan jaringan kemitraan ribuan<br class="d-none d-md-block">
+        petani Nusantara. Melayani pengadaan beras retail kemasan higienis, pasokan grosir Horeka,<br class="d-none d-md-block">
+        dan kontrak kontinu industri pangan nasional dengan jaminan sertifikasi SNI &amp; Halal.
+      </p>
+
+      <div class="mb-4">
+        <a href="#" class="btn btn-cta">Belanja Produk Beras</a>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-4">
+          <div class="stat-card stat-1 h-100">
+            <div class="stat-value-1 fw-bold" style="font-size:22px;">150+ Ton</div>
+            <div class="fw-semibold" style="color:#475569; font-size:10px; letter-spacing:.4px;">
+              Kapasitas Giling / Hari
             </div>
-            <div style="width: 117.73px; height: 108px; position: relative">
-              <div style="padding-top: 4px; left: 0px; top: 74px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-                  <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #1E293B; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Giling Subang Line 1</div>
-                </div>
-              </div>
-              <div style="padding: 3px; left: 21.86px; top: 0px; position: absolute; background: linear-gradient(45deg, #0D47A1 0%, #1E40AF 50%, #F59E0B 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="padding: 2px; background: white; border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="width: 64px; height: 64px; background: rgba(255, 255, 255, 0); box-shadow: 0px 0px 0px 1px #BFDBFE; overflow: hidden; border-radius: 9999px; flex-direction: column; justify-content: center; align-items: flex-start; display: flex">
-                    <img style="align-self: stretch; flex: 1 1 0; position: relative" src="https://placehold.co/64x64" />
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="stat-card stat-2 h-100">
+            <div class="stat-value-2 fw-bold" style="font-size:22px;">100% Sah</div>
+            <div class="fw-semibold" style="color:#475569; font-size:10px; letter-spacing:.4px;">
+              Tera Metrologi Legal RI
             </div>
-            <div style="width: 105.83px; height: 108px; position: relative">
-              <div style="padding-top: 4px; left: 5.85px; top: 74px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-                  <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #1E293B; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Pecah Kulit (PK)</div>
-                </div>
-              </div>
-              <div style="padding: 3px; left: 15.91px; top: 0px; position: absolute; background: linear-gradient(45deg, #F59E0B 0%, #FBBF24 50%, #0D47A1 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="padding: 2px; background: white; border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="width: 64px; height: 64px; background: rgba(255, 255, 255, 0); box-shadow: 0px 0px 0px 1px #FDE68A; overflow: hidden; border-radius: 9999px; flex-direction: column; justify-content: center; align-items: flex-start; display: flex">
-                    <img style="align-self: stretch; flex: 1 1 0; position: relative" src="https://placehold.co/64x64" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="width: 119.88px; height: 108px; position: relative">
-              <div style="padding-top: 4px; left: 0px; top: 74px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-                  <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #1E293B; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Packing Line Karung</div>
-                </div>
-              </div>
-              <div style="padding: 3px; left: 22.94px; top: 0px; position: absolute; background: linear-gradient(45deg, #0D47A1 0%, #1565C0 50%, #F59E0B 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="padding: 2px; background: white; border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="width: 64px; height: 64px; background: rgba(255, 255, 255, 0); box-shadow: 0px 0px 0px 1px #BFDBFE; overflow: hidden; border-radius: 9999px; flex-direction: column; justify-content: center; align-items: flex-start; display: flex">
-                    <img style="align-self: stretch; flex: 1 1 0; position: relative" src="https://placehold.co/64x64" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="width: 135.03px; height: 108px; position: relative">
-              <div style="padding-top: 4px; left: 0px; top: 74px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-                  <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #1E293B; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Muat Tronton Cipinang</div>
-                </div>
-              </div>
-              <div style="padding: 3px; left: 30.51px; top: 0px; position: absolute; background: linear-gradient(45deg, #F59E0B 0%, #0D47A1 50%, #FBBF24 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="padding: 2px; background: white; border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="width: 64px; height: 64px; background: rgba(255, 255, 255, 0); box-shadow: 0px 0px 0px 1px #FDE68A; overflow: hidden; border-radius: 9999px; flex-direction: column; justify-content: center; align-items: flex-start; display: flex">
-                    <img style="align-self: stretch; flex: 1 1 0; position: relative" src="https://placehold.co/64x64" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="width: 106.83px; height: 108px; position: relative">
-              <div style="padding-top: 4px; left: 6.41px; top: 74px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-                  <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #1E293B; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Timbang 60 Ton</div>
-                </div>
-              </div>
-              <div style="padding: 3px; left: 16.41px; top: 0px; position: absolute; background: linear-gradient(45deg, #0D47A1 0%, #F59E0B 50%, #1565C0 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <div style="padding: 2px; background: white; border-radius: 9999px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="width: 64px; height: 64px; background: rgba(255, 255, 255, 0); box-shadow: 0px 0px 0px 1px #BFDBFE; overflow: hidden; border-radius: 9999px; flex-direction: column; justify-content: center; align-items: flex-start; display: flex">
-                    <img style="align-self: stretch; flex: 1 1 0; position: relative" src="https://placehold.co/64x64" />
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="stat-card stat-3 h-100">
+            <div class="stat-value-3 fw-bold" style="font-size:22px;">H-0 Cair</div>
+            <div class="fw-semibold" style="color:#475569; font-size:10px; letter-spacing:.4px;">
+              Pembayaran Tunai Petani
             </div>
           </div>
         </div>
       </div>
-      <div style="align-self: stretch; position: relative; background: linear-gradient(166deg, #0D47A1 0%, #1565C0 50%, #0A2F6C 100%); box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05) inset; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-        <div style="width: 384px; height: 384px; left: 1024px; top: -128px; position: absolute; background: rgba(251, 191, 36, 0.20); box-shadow: 64px 64px 64px; border-radius: 9999px; filter: blur(32px)"></div>
-        <div style="width: 384px; height: 384px; left: -128px; top: 324px; position: absolute; background: rgba(147, 197, 253, 0.15); box-shadow: 64px 64px 64px; border-radius: 9999px; filter: blur(32px)"></div>
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="align-self: stretch; height: 1040px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-            <img style="align-self: stretch; height: 960px" src="https://placehold.co/1280x960" />
+    </div>
+  </section>
+
+  <!-- Tentang PT CAB -->
+  <section class="about-section py-5">
+    <div class="container mx-auto" style="max-width:1280px;">
+      <h2 class="text-center fw-bold mb-5" style="color:#0D47A1; font-size:36px;">
+        Tentang PT Citra Abadi Bermartabat
+      </h2>
+
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+          <div class="about-card p-4">
+            <p style="color:#475569; font-size:18px; line-height:1.7;">
+              PT Citra Abadi Bermartabat (PT CAB) adalah perusahaan produsen dan penggilingan beras premium
+              berskala besar yang berbasis di Kabupaten Karanganyar, Jawa Tengah. Perusahaan ini dikenal
+              sebagai produsen beras berkualitas tinggi yang telah mengantongi sertifikat SPPB PSAT Level 1
+              dari Dinas Ketahanan Pangan Provinsi Jawa Tengah, sebuah standarisasi tertinggi yang menjamin
+              bahwa seluruh proses produksi dan sanitasi pangan mereka sangat aman serta higienis.
+              <br><br>
+              Dalam operasionalnya, PT Citra Abadi Bermartabat menyerap hasil panen padi dari petani lokal
+              untuk diolah menggunakan mesin modern menjadi berbagai merek dagang beras populer di pasar,
+              seperti beras premium Cap Janjoss, Cap Mbok Ben, dan Cap Bengawan yang banyak didistribusikan
+              ke berbagai daerah baik secara konvensional maupun melalui platform e-commerce.
+            </p>
           </div>
         </div>
       </div>
-      <div style="align-self: stretch; padding-top: 32px; padding-bottom: 32px; background: linear-gradient(142deg, rgba(224, 242, 254, 0.90) 0%, rgba(255, 255, 255, 0.98) 35%, rgba(254, 249, 195, 0.85) 68%, rgba(245, 158, 11, 0.22) 88%, rgba(13, 71, 161, 0.18) 100%); flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-        <div style="width: 100%; max-width: 1280px; padding-left: 24px; padding-right: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 32px; display: flex">
-          <div style="width: 768px; max-width: 768px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 4px; display: flex">
-            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-              <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 36px; font-family: Plus Jakarta Sans; font-weight: 800; line-height: 44px; word-wrap: break-word">Tentang PT Citra Abadi Bermartabat</div>
-            </div>
-          </div>
-          <div style="align-self: stretch; justify-content: center; align-items: flex-start; gap: 16px; display: inline-flex">
-            <div style="flex: 1 1 0; padding: 24px; position: relative; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 16px; outline: 1px rgba(253, 230, 138, 0.80) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-              <div style="width: 63.47px; height: 56px; left: 1151.53px; top: 13px; position: absolute"></div>
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 20px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 19.50px; word-wrap: break-word">PT Citra Abadi Bermartabat (PT CAB) adalah perusahaan produsen dan penggilingan beras premium berskala besar yang berbasis di Kabupaten Karanganyar, Jawa Tengah. Perusahaan ini dikenal sebagai produsen beras berkualitas tinggi yang telah mengantongi sertifikat SPPB PSAT Level 1 dari Dinas Ketahanan Pangan Provinsi Jawa Tengah, sebuah standarisasi tertinggi yang menjamin bahwa seluruh proses produksi dan sanitasi pangan mereka sangat aman serta higienis.<br/><br/>Dalam operasionalnya, PT Citra Abadi Bermartabat menyerap hasil panen padi dari petani lokal untuk diolah menggunakan mesin modern menjadi berbagai merek dagang beras populer di pasar, seperti beras premium Cap Janjoss, Cap Mbok Ben, dan Cap Bengawan yang banyak didistribusikan ke berbagai daerah baik secara konvensional maupun melalui platform e-commerce.</div>
-              </div>
-            </div>
-          </div>
-          <div style="align-self: stretch; padding: 32px; position: relative; background: linear-gradient(90deg, white 0%, rgba(239, 246, 255, 0.40) 50%, rgba(255, 251, 235, 0.40) 100%); border-radius: 16px; outline: 2px rgba(252, 211, 77, 0.80) solid; outline-offset: -2px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-            <div style="width: 1232px; height: 194px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.10), 0px 20px 25px -5px rgba(0, 0, 0, 0.10); border-radius: 16px"></div>
-            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 24px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 32px; word-wrap: break-word">Konsultasi Hubungi Contact</div>
-                </div>
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">Tanyakan harga gabah harian, ketersediaan tonase stok beras, permintaan sertifikasi analisa lab SNI, atau pengajuan<br/>jadwal muat truk tronton Anda sekarang.</div>
-                </div>
-              </div>
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-                <div style="align-self: stretch; padding-left: 24px; padding-right: 24px; padding-top: 14px; padding-bottom: 14px; position: relative; background: linear-gradient(90deg, #059669 0%, #0F766E 100%); border-radius: 12px; outline: 1px #34D399 solid; outline-offset: -1px; justify-content: center; align-items: center; gap: 7.99px; display: inline-flex">
-                  <div style="width: 372px; height: 54px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10); border-radius: 12px"></div>
-                  <div style="flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
-                    <div style="width: 20px; height: 20px; background: #FCD34D"></div>
-                  </div>
-                  <div style="flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
-                    <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Chat WhatsApp: 0811-9238-CAB</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="contact-card p-4">
+            <h3 class="fw-bold mb-2" style="color:#0D47A1; font-size:24px;">Konsultasi Hubungi Contact</h3>
+            <p style="color:#475569; font-size:14px; line-height:20px;" class="mb-3">
+              Tanyakan harga gabah harian, ketersediaan tonase stok beras, permintaan sertifikasi analisa lab SNI,
+              atau pengajuan jadwal muat truk tronton Anda sekarang.
+            </p>
+            <a href="#" class="btn btn-wa d-inline-flex align-items-center gap-2">
+              <span style="color:#FCD34D; font-size:18px;">💬</span>
+              Chat WhatsApp: 0811-9238-CAB
+            </a>
           </div>
         </div>
       </div>
-      <div style="align-self: stretch; padding-top: 32px; padding-bottom: 32px; background: linear-gradient(180deg, white 0%, #F7FAFF 50%, white 100%); border-bottom: 1px #EFF6FF solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-        <div style="width: 100%; max-width: 1280px; padding-left: 24px; padding-right: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 24px; display: flex">
-          <div style="width: 768px; max-width: 768px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 4px; display: flex">
-            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-              <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 36px; font-family: Plus Jakarta Sans; font-weight: 800; line-height: 44px; word-wrap: break-word">Visi & Misi</div>
+    </div>
+  </section>
+
+  <!-- Visi & Misi -->
+  <section class="py-5" style="background: linear-gradient(180deg,#fff 0%, #F7FAFF 50%, #fff 100%); border-bottom:1px solid #EFF6FF;">
+    <div class="container mx-auto" style="max-width:1280px;">
+      <h2 class="text-center fw-bold mb-5" style="color:#0D47A1; font-size:36px;">Visi &amp; Misi</h2>
+
+      <div class="row g-4">
+
+        <!-- Card 1 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="visi-card h-100 p-4 d-flex flex-column gap-3">
+            <div class="visi-icon blue">⭐</div>
+            <div>
+              <div class="fw-bold mb-1" style="color:#0D47A1; font-size:16px;">Visi &amp; Misi Terpadu</div>
+              <p class="mb-0" style="color:#475569; font-size:14px; line-height:22.75px;">
+                Menjadi pilar ketahanan pangan Indonesia melalui pengolahan gabah presisi bersertifikasi SNI
+                dan sistem distribusi beras pangan sehat terpercaya.
+              </p>
             </div>
-          </div>
-          <div style="align-self: stretch; justify-content: center; align-items: flex-start; gap: 24px; display: inline-flex">
-            <div style="flex: 1 1 0; padding-top: 24px; padding-bottom: 40px; padding-left: 24px; padding-right: 24px; background: linear-gradient(129deg, white 0%, rgba(239, 246, 255, 0.40) 50%, white 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 16px; outline: 1px rgba(253, 230, 138, 0.70) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-              <div style="width: 56px; height: 56px; position: relative; background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%); border-radius: 12px; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 56px; height: 56px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10); border-radius: 12px"></div>
-                <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                  <div style="width: 18.75px; height: 21.25px; background: #FCD34D"></div>
-                </div>
-              </div>
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Visi & Misi Terpadu</div>
-                </div>
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 22.75px; word-wrap: break-word">Menjadi pilar ketahanan pangan<br/>Indonesia melalui pengolahan<br/>gabah presisi bersertifikasi SNI dan<br/>sistem distribusi beras pangan sehat<br/>terpercaya.</div>
-                </div>
-              </div>
-              <div style="align-self: stretch; padding-top: 7.50px; border-top: 1px #DBEAFE solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                <div style="justify-content: flex-start; align-items: center; display: inline-flex">
-                  <div style="justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Standar SNI 6128:2020 • Halal BPJPH</div>
-                </div>
-              </div>
-            </div>
-            <div style="flex: 1 1 0; padding-top: 24px; padding-bottom: 40px; padding-left: 24px; padding-right: 24px; background: linear-gradient(129deg, white 0%, rgba(255, 251, 235, 0.30) 50%, white 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 16px; outline: 1px rgba(253, 230, 138, 0.70) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-              <div style="width: 56px; height: 56px; position: relative; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); border-radius: 12px; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 56px; height: 56px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10); border-radius: 12px"></div>
-                <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                  <div style="width: 25px; height: 25px; background: white"></div>
-                </div>
-              </div>
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Timbangan Sah & Akurat</div>
-                </div>
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 22.75px; word-wrap: break-word">Jembatan timbang 60 ton<br/>terkalibrasi berkala oleh Badan<br/>Metrologi Legal RI. Transparansi<br/>angka disaksikan langsung oleh<br/>supir dan mitra tani pengirim.</div>
-                </div>
-              </div>
-              <div style="align-self: stretch; padding-top: 7.50px; border-top: 1px #FEF3C7 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                <div style="justify-content: flex-start; align-items: center; display: inline-flex">
-                  <div style="justify-content: center; display: flex; flex-direction: column; color: #B45309; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Zero Manipulasi • Cetak Tiket Otomatis</div>
-                </div>
-              </div>
-            </div>
-            <div style="flex: 1 1 0; padding-top: 24px; padding-bottom: 40px; padding-left: 24px; padding-right: 24px; background: linear-gradient(129deg, white 0%, rgba(239, 246, 255, 0.40) 50%, white 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 16px; outline: 1px rgba(253, 230, 138, 0.70) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-              <div style="width: 56px; height: 56px; position: relative; background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%); border-radius: 12px; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 56px; height: 56px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10); border-radius: 12px"></div>
-                <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                  <div style="width: 23.01px; height: 25px; background: #FCD34D"></div>
-                </div>
-              </div>
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Sortasi Optik Warna</div>
-                </div>
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 22.75px; word-wrap: break-word">Memisahkan butir hitam, kapur, batu,<br/>kotoran, dan butir patah secara<br/>presisi. Beras putih alami mengkilap<br/>tanpa zat pemutih sintetis atau<br/>aroma kimia.</div>
-                </div>
-              </div>
-              <div style="align-self: stretch; padding-top: 7.50px; border-top: 1px #DBEAFE solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                <div style="justify-content: flex-start; align-items: center; display: inline-flex">
-                  <div style="justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Alami 100% Higienis • Bebas Kutu</div>
-                </div>
-              </div>
-            </div>
-            <div style="flex: 1 1 0; padding: 24px; background: linear-gradient(129deg, white 0%, rgba(255, 251, 235, 0.30) 50%, white 100%); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 16px; outline: 1px rgba(253, 230, 138, 0.70) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-              <div style="width: 56px; height: 56px; position: relative; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); border-radius: 12px; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 56px; height: 56px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0); box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10); border-radius: 12px"></div>
-                <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                  <div style="width: 27.50px; height: 20px; background: white"></div>
-                </div>
-              </div>
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Mitra Tani & Supplier Adil</div>
-                </div>
-                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                  <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 22.75px; word-wrap: break-word">Penentuan harga gabah transparan<br/>berbasis rendemen riil lab. Sistem<br/>pembayaran tunai atau transfer hari<br/>itu juga (H-0) tanpa potongan<br/>terselubung.</div>
-                </div>
-              </div>
-              <div style="align-self: stretch; padding-top: 7.50px; border-top: 1px #FEF3C7 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                <div style="padding-right: 40.48px; justify-content: flex-start; align-items: center; display: inline-flex">
-                  <div style="justify-content: center; display: flex; flex-direction: column; color: #B45309; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 16px; letter-spacing: 0.24px; word-wrap: break-word">Pencairan Cepat • Kontrak Pasok<br/>Jangka Panjang</div>
-                </div>
+            <div class="pt-2 mt-auto" style="border-top:1px solid #DBEAFE;">
+              <div class="fw-bold" style="color:#0D47A1; font-size:12px;">
+                Standar SNI 6128:2020 • Halal BPJPH
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Card 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="visi-card amber h-100 p-4 d-flex flex-column gap-3">
+            <div class="visi-icon amber">⚖️</div>
+            <div>
+              <div class="fw-bold mb-1" style="color:#0D47A1; font-size:16px;">Timbangan Sah &amp; Akurat</div>
+              <p class="mb-0" style="color:#475569; font-size:14px; line-height:22.75px;">
+                Jembatan timbang 60 ton terkalibrasi berkala oleh Badan Metrologi Legal RI.
+                Transparansi angka disaksikan langsung oleh supir dan mitra tani pengirim.
+              </p>
+            </div>
+            <div class="pt-2 mt-auto" style="border-top:1px solid #FEF3C7;">
+              <div class="fw-bold" style="color:#B45309; font-size:12px;">
+                Zero Manipulasi • Cetak Tiket Otomatis
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="visi-card h-100 p-4 d-flex flex-column gap-3">
+            <div class="visi-icon blue">🔬</div>
+            <div>
+              <div class="fw-bold mb-1" style="color:#0D47A1; font-size:16px;">Sortasi Optik Warna</div>
+              <p class="mb-0" style="color:#475569; font-size:14px; line-height:22.75px;">
+                Memisahkan butir hitam, kapur, batu, kotoran, dan butir patah secara presisi.
+                Beras putih alami mengkilap tanpa zat pemutih sintetis atau aroma kimia.
+              </p>
+            </div>
+            <div class="pt-2 mt-auto" style="border-top:1px solid #DBEAFE;">
+              <div class="fw-bold" style="color:#0D47A1; font-size:12px;">
+                Alami 100% Higienis • Bebas Kutu
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="visi-card amber h-100 p-4 d-flex flex-column gap-3">
+            <div class="visi-icon amber">🤝</div>
+            <div>
+              <div class="fw-bold mb-1" style="color:#0D47A1; font-size:16px;">Mitra Tani &amp; Supplier Adil</div>
+              <p class="mb-0" style="color:#475569; font-size:14px; line-height:22.75px;">
+                Penentuan harga gabah transparan berbasis rendemen riil lab. Sistem pembayaran tunai
+                atau transfer hari itu juga (H-0) tanpa potongan terselubung.
+              </p>
+            </div>
+            <div class="pt-2 mt-auto" style="border-top:1px solid #FEF3C7;">
+              <div class="fw-bold" style="color:#B45309; font-size:12px;">
+                Pencairan Cepat • Kontrak Pasok Jangka Panjang
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer-cab pt-4 pb-3">
+  <div class="container mx-auto" style="max-width:1280px;">
+    <div class="row g-4">
+
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <img src="https://placehold.co/32x32" width="32" height="32" style="background:#fff; padding:2px; border-radius:4px;" alt="">
+          <div>
+            <div class="footer-title">PT CAB</div>
+            <div style="color:#FCD34D; font-size:10px; font-weight:700; letter-spacing:.4px;">
+              Citra Abadi Bermartabat
+            </div>
+          </div>
+        </div>
+        <p class="footer-text">
+          Pionir modernisasi penggilingan gabah padi dan suplai beras curah higienis
+          berstandar industri dengan teknologi optical sorter dan dryer mutakhir.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="footer-badge">NIB: 912000384112</span>
+          <span class="footer-badge">KEMTAN RI: PD-32.13-A.I</span>
+          <span class="footer-badge">HALAL ID: 32110008472</span>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="footer-bar"></span>
+          <span class="footer-title">Lokasi Pabrik &amp; Gudang</span>
+        </div>
+        <p class="footer-text mb-2">
+          PT. Citra Abadi Bermartabat merupakan sebuah perusahaan di bidang pangan
+          yang khususnya di bahan makanan pokok yaitu beras.
+        </p>
+        <p class="footer-text mb-0">
+          <u>Alamat</u>: Jl. Derpoyudo, Gedong, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57716
+        </p>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="footer-bar"></span>
+          <span class="footer-title">Contact Media Sosial</span>
+        </div>
+        <ul class="list-unstyled footer-text mb-0 d-flex flex-column gap-2">
+          <li>• Whatsapp (09899066)</li>
+          <li>• Instagram (Citra Abadi Bermartabat)</li>
+          <li>• TikTok (PT CAB)</li>
+          <li>• LinkedIn (CAB)</li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="footer-bar"></span>
+          <span class="footer-title">Lokasi PT CAB</span>
+        </div>
+        <div class="p-2 rounded-3" style="background: rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);">
+          <img src="https://placehold.co/250x200" class="img-fluid rounded" alt="Map">
+        </div>
+      </div>
+    </div>
+
+    <hr style="border-color: rgba(96,165,250,.3); margin-top: 2rem;">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div style="color:#BFDBFE; font-size:12px;">
+        © 2025 PT Citra Abadi Bermartabat. Seluruh Hak Cipta Dilindungi Undang-Undang.
+      </div>
+      <div class="d-flex gap-3" style="color:#BFDBFE; font-size:12px;">
+        <a href="#" class="text-decoration-none" style="color:#BFDBFE;">Syarat Kemitraan</a>
+        <span>•</span>
+        <a href="#" class="text-decoration-none" style="color:#BFDBFE;">Standar Mutu SNI</a>
+        <span>•</span>
+        <a href="#" class="text-decoration-none" style="color:#BFDBFE;">Karir &amp; Magang</a>
       </div>
     </div>
   </div>
-  <div style="align-self: stretch; padding-top: 32px; padding-bottom: 24px; background: linear-gradient(180deg, #0A2F6C 0%, #0D47A1 50%, #081C3D 100%); border-top: 2px #FBBF24 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: flex">
-    <div style="width: 100%; max-width: 1280px; padding-left: 24px; padding-right: 24px; justify-content: center; align-items: flex-start; gap: 32px; display: inline-flex">
-      <div style="flex: 1 1 0; padding-bottom: 5px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
-          <div style="padding: 4px; background: white; border-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="width: 32px; height: 32px; max-width: 40px; position: relative; overflow: hidden; background-image: url(https://placehold.co/32x32)">
-              <img style="width: 41px; height: 41px; left: -4px; top: -4px; position: absolute" src="https://placehold.co/41x41" />
-            </div>
-          </div>
-          <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-              <div style="justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 800; line-height: 24px; word-wrap: break-word">PT CAB</div>
-            </div>
-            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-              <div style="justify-content: center; display: flex; flex-direction: column; color: #FCD34D; font-size: 10px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 14px; letter-spacing: 0.40px; word-wrap: break-word">Citra Abadi Bermartabat</div>
-            </div>
-          </div>
-        </div>
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-          <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column; color: rgba(219, 234, 254, 0.80); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 22.75px; word-wrap: break-word">Pionir modernisasi penggilingan gabah<br/>padi dan suplai beras curah higienis<br/>berstandar industri dengan teknologi<br/>optical sorter dan dryer mutakhir.</div>
-        </div>
-        <div style="align-self: stretch; height: 56px; position: relative">
-          <div style="height: 24px; padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px; left: 0px; top: 4px; position: absolute; background: rgba(255, 255, 255, 0.10); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 4px; outline: 1px rgba(251, 191, 36, 0.40) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #FDE68A; font-size: 10px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 14px; letter-spacing: 0.40px; word-wrap: break-word">NIB: 912000384112</div>
-          </div>
-          <div style="height: 24px; padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px; left: 121.14px; top: 4px; position: absolute; background: rgba(255, 255, 255, 0.10); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 4px; outline: 1px rgba(251, 191, 36, 0.40) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #FDE68A; font-size: 10px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 14px; letter-spacing: 0.40px; word-wrap: break-word">KEMTAN RI: PD-32.13-A.I</div>
-          </div>
-          <div style="height: 24px; padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px; left: 0px; top: 32px; position: absolute; background: rgba(255, 255, 255, 0.10); box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 4px; outline: 1px rgba(251, 191, 36, 0.40) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #FDE68A; font-size: 10px; font-family: Plus Jakarta Sans; font-weight: 600; line-height: 14px; letter-spacing: 0.40px; word-wrap: break-word">HALAL ID: 32110008472</div>
-          </div>
-        </div>
-      </div>
-      <div style="flex: 1 1 0; padding-bottom: 36px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 6px; display: inline-flex">
-          <div style="width: 6px; height: 16px; background: #FBBF24; border-radius: 9999px"></div>
-          <div style="justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Lokasi Pabrik & Gudang</div>
-        </div>
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="padding-top: 2px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 16.67px; height: 16.67px; background: #FBBF24"></div>
-            </div>
-            <div style="padding-right: 31px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 284px; height: 91px; justify-content: center; display: flex; flex-direction: column; color: rgba(219, 234, 254, 0.80); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 22.75px; word-wrap: break-word">PT. Citra Abadi Bermartabat merupakan sebuah perusahaan di bidang pangan yang khususnya di bahan makanan pokok yaitu beras.</div>
-            </div>
-          </div>
-          <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="padding-top: 2px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 16.67px; height: 15px; background: #FBBF24"></div>
-            </div>
-            <div style="padding-right: 20.92px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                <div style="align-self: stretch; justify-content: center; display: flex; flex-direction: column"><span style="color: rgba(219, 234, 254, 0.80); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; text-decoration: underline; line-height: 22.75px; word-wrap: break-word">Alamat</span><span style="color: rgba(219, 234, 254, 0.80); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 22.75px; word-wrap: break-word">: Jl. Derpoyudo, Gedong, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57716</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="flex: 1 1 0; padding-bottom: 32px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 6px; display: inline-flex">
-          <div style="width: 6px; height: 16px; background: #FBBF24; border-radius: 9999px"></div>
-          <div style="justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Contact Media Sosial</div>
-        </div>
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 13.33px; height: 13.33px; background: #FBBF24"></div>
-            </div>
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(219, 234, 254, 0.90); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">Whatsaap (09899066)</div>
-            </div>
-          </div>
-          <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 13.33px; height: 13.33px; background: #FBBF24"></div>
-            </div>
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(219, 234, 254, 0.90); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">Instragram (Citra Abadi Bermartabat)</div>
-            </div>
-          </div>
-          <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 13.33px; height: 13.33px; background: #FBBF24"></div>
-            </div>
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(219, 234, 254, 0.90); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">TikTok (PT CAB)</div>
-            </div>
-          </div>
-          <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 13.33px; height: 13.33px; background: #FBBF24"></div>
-            </div>
-            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(219, 234, 254, 0.90); font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">LinkedIn (CAB)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 6px; display: inline-flex">
-          <div style="width: 6px; height: 16px; background: #FBBF24; border-radius: 9999px"></div>
-          <div style="justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">Lokasi PT CAB</div>
-        </div>
-        <div style="align-self: stretch; padding: 16px; background: rgba(255, 255, 255, 0.10); border-radius: 12px; outline: 1px rgba(255, 255, 255, 0.15) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-          <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-            <img style="width: 250px; height: 200px" src="https://placehold.co/250x200" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="width: 100%; max-width: 1280px; padding-top: 24px; padding-left: 24px; padding-right: 24px; border-top: 1px rgba(96, 165, 250, 0.30) solid; justify-content: space-between; align-items: center; display: inline-flex">
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-        <div style="justify-content: center; display: flex; flex-direction: column; color: #BFDBFE; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">© 2025 PT Citra Abadi Bermartabat. Seluruh Hak Cipta Dilindungi Undang-Undang.</div>
-      </div>
-      <div style="justify-content: flex-start; align-items: center; gap: 16px; display: flex">
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="justify-content: center; display: flex; flex-direction: column; color: #BFDBFE; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">Syarat Kemitraan</div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="justify-content: center; display: flex; flex-direction: column; color: #BFDBFE; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">•</div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="justify-content: center; display: flex; flex-direction: column; color: #BFDBFE; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">Standar Mutu SNI</div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="justify-content: center; display: flex; flex-direction: column; color: #BFDBFE; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">•</div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="justify-content: center; display: flex; flex-direction: column; color: #BFDBFE; font-size: 12px; font-family: Plus Jakarta Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">Karir & Magang</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="width: 1280px; left: 0px; top: 0px; position: absolute; background: rgba(255, 255, 255, 0.95); box-shadow: 0px 4px 20px rgba(13, 71, 161, 0.08); border-bottom: 1px rgba(253, 230, 138, 0.50) solid; backdrop-filter: blur(6px); flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-    <div style="align-self: stretch; height: 23px; padding-top: 4px; padding-bottom: 4px; background: linear-gradient(90deg, #0A3578 0%, #0D47A1 50%, #1565C0 100%); border-bottom: 1px rgba(251, 191, 36, 0.40) solid"></div>
-    <div style="width: 100%; height: 80px; max-width: 1280px; padding-left: 24px; justify-content: flex-start; align-items: center; gap: 43px; display: inline-flex">
-      <div style="justify-content: flex-start; align-items: center; gap: 16px; display: flex">
-        <div style="width: 68px; height: 68px; max-width: 218.56px; position: relative; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05); overflow: hidden; background-image: url(https://placehold.co/68x68)">
-          <img style="width: 68px; height: 68px; left: -1px; top: 0px; position: absolute" src="https://placehold.co/68x68" />
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 16px; font-family: Plus Jakarta Sans; font-weight: 800; line-height: 20px; word-wrap: break-word">PT CAB</div>
-          </div>
-          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #64748B; font-size: 10px; font-family: Plus Jakarta Sans; font-weight: 500; line-height: 10px; letter-spacing: 0.40px; word-wrap: break-word">Pabrik & Distribusi Beras Modern</div>
-          </div>
-        </div>
-      </div>
-      <div style="width: 785px; padding-left: 24px; padding-right: 24px; background: white; box-shadow: 0px 2px 8px rgba(13, 71, 161, 0.04); border-top: 1px rgba(219, 234, 254, 0.60) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-        <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; overflow: hidden; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Beranda </div>
-          </div>
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #F59E0B; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Tentang Kami</div>
-          </div>
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Produk</div>
-          </div>
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Infromasi</div>
-          </div>
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Fasilitas</div>
-          </div>
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Jajaran Struktur</div>
-          </div>
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #475569; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Kontak Kami</div>
-          </div>
-        </div>
-      </div>
-      <div style="width: 92px; padding-left: 24px; padding-right: 24px; background: #FEA619; box-shadow: 0px 2px 8px rgba(13, 71, 161, 0.04); border-top: 1px rgba(219, 234, 254, 0.60) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-        <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; overflow: hidden; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
-          <div style="padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="justify-content: center; display: flex; flex-direction: column; color: #0D47A1; font-size: 14px; font-family: Plus Jakarta Sans; font-weight: 700; line-height: 20px; letter-spacing: 0.14px; word-wrap: break-word">Login</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
