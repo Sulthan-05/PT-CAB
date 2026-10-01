@@ -31,14 +31,14 @@ class Tentang extends CI_Controller
 		redirect('admin/tentang');
 	}
 
-	public function update($id)
+	public function update()
 	{
 		$data = [
 			'deskripsi' => $this->input->post('deskripsi'),
 			'visi' => $this->input->post('visi'),
 			'misi' => $this->input->post('misi'),
 		];
-		$wh = ['id_profile'=>$id];
+		$wh = ['id_profil'=> $this->input->post('id_profil'),];
 		$this->db->update('profil_perusahaan', $data,$wh);
 		$this->session->set_flashdata('alert', '
             <div class="p-3 mb-4 text-sm text-red-800 rounded-md bg-green-50 border border-red-200">

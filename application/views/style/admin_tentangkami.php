@@ -611,13 +611,10 @@
 
 
                 <!-- BODY MODAL -->
+                <form action="<?= base_url('admin/tentang/update') ?>" method="post">
+                    <input type="hidden" name="id_profil" value="<?= $ttg['id_profil'] ?>" id="">
+                    <div class="modal-body">
 
-                <div class="modal-body">
-
-                    <form action="<?= base_url('admin/tentang/update') ?>" method="post" id="formTambahProfil">
-
-                        <input type="hidden" name="id_profil<?= $ttg['id_profil']; ?>" value="<?= $ttg['id_profil'] ?>"
-                            id="">
 
                         <!-- DESKRIPSI -->
 
@@ -630,8 +627,8 @@
                             </label>
 
                             <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4"
-                                placeholder="Masukkan deskripsi perusahaan..." value="<?= $ttg['deskripsi'] ?>"
-                                required></textarea>
+                                placeholder="Masukkan deskripsi perusahaan..." value=""
+                                required><?= $ttg['deskripsi'] ?></textarea>
 
                         </div>
 
@@ -647,7 +644,7 @@
                             </label>
 
                             <textarea class="form-control" id="visi" name="visi" rows="3"
-                                placeholder="Masukkan visi perusahaan..." required></textarea>
+                                placeholder="Masukkan visi perusahaan..." required><?= $ttg['visi'] ?></textarea>
 
                         </div>
 
@@ -663,34 +660,31 @@
                             </label>
 
                             <textarea class="form-control" id="misi" name="misi" rows="4"
-                                placeholder="Masukkan misi perusahaan..." required></textarea>
+                                placeholder="Masukkan misi perusahaan..." required><?= $ttg['misi'] ?></textarea>
 
                         </div>
 
-                    </form>
-
-                </div>
 
 
-                <!-- FOOTER MODAL -->
+                    </div>
 
-                <div class="modal-footer">
+                    <div class="modal-footer">
 
-                    <button type="button" class="btn-modal btn-batal" data-bs-dismiss="modal">
+                        <button type="button" class="btn-modal btn-batal" data-bs-dismiss="modal">
 
-                        Batal
+                            Batal
 
-                    </button>
+                        </button>
 
-                    <button type="submit" form="formTambahProfil" class="btn-modal btn-simpan">
+                        <button type="submit" class="btn-modal btn-simpan">
 
-                        <i class="fa-solid fa-check me-1"></i>
-                        Simpan
+                            <i class="fa-solid fa-check me-1"></i>
+                            Simpan
 
-                    </button>
+                        </button>
 
-                </div>
-
+                    </div>
+                </form>
             </div>
 
         </div>
