@@ -432,7 +432,7 @@
 				</div>
 			</div>
 
-<<<<<<< Updated upstream
+
             <ul class="sidebar-menu">
                 <li><a href="#" class="active">Dashboard</a></li>
                 <li><a href="#">Website</a></li>
@@ -445,7 +445,7 @@
                 <li><a href="#">Story</a></li>
             </ul>
         </div>
-=======
+
 			<!-- MENU SIDEBAR -->
 			<ul class="sidebar-menu">
 				<!-- DASHBOARD -->
@@ -457,7 +457,7 @@
 						</span>
 					</a>
 				</li>
->>>>>>> Stashed changes
+
 
 				<!-- ================= WEBSITE ================= -->
 				<li class="menu-dropdown">
