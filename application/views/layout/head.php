@@ -421,16 +421,18 @@
     <div class="overlay" id="overlay"></div>
 
     <!-- SIDEBAR KIRI -->
-    <aside class="sidebar" id="sidebar">
-        <div>
-            <div class="sidebar-header">
-                <div class="logo-box">CAB</div>
-                <div class="brand-text">
-                    <h2>Citra Abadi Bermartabat</h2>
-                    <p>ADMIN</p>
-                </div>
-            </div>
+	<aside class="sidebar" id="sidebar">
+		<div>
+			<!-- LOGO -->
+			<div class="sidebar-header">
+				<div class="logo-box">CAB</div>
+				<div class="brand-text">
+					<h2>Citra Abadi Bermartabat</h2>
+					<p>ADMIN</p>
+				</div>
+			</div>
 
+<<<<<<< Updated upstream
             <ul class="sidebar-menu">
                 <li><a href="#" class="active">Dashboard</a></li>
                 <li><a href="#">Website</a></li>
@@ -443,13 +445,189 @@
                 <li><a href="#">Story</a></li>
             </ul>
         </div>
+=======
+			<!-- MENU SIDEBAR -->
+			<ul class="sidebar-menu">
+				<!-- DASHBOARD -->
+				<li>
+					<a href="#" class="active">
+						<span class="menu-left">
+							<i class="fa-solid fa-gauge-high"></i>
+							<span>Dashboard</span>
+						</span>
+					</a>
+				</li>
+>>>>>>> Stashed changes
 
-        <div class="sidebar-footer">
-            <a href="<?= base_url('auth/logout') ?>">
-                LOGOUT
-            </a>
-        </div>
-    </aside>
+				<!-- ================= WEBSITE ================= -->
+				<li class="menu-dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle">
+						<span class="menu-left">
+							<i class="fa-solid fa-globe"></i>
+							<span>Website</span>
+						</span>
+						<i class="fa-solid fa-chevron-down dropdown-icon"></i>
+					</a>
+					<ul class="submenu">
+						<li>
+							<a href="#">
+								<i class="fa-regular fa-house"></i>
+								<span>Beranda</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-heading"></i>
+								<span>Header</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-window-maximize"></i>
+								<span>Footer</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- ================= TENTANG KAMI ================= -->
+				<li class="menu-dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle">
+						<span class="menu-left">
+							<i class="fa-solid fa-building"></i>
+							<span>Tentang Kami</span>
+						</span>
+						<i class="fa-solid fa-chevron-down dropdown-icon"></i>
+					</a>
+					<ul class="submenu">
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-building-columns"></i>
+								<span>Profil Perusahaan</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-clock-rotate-left"></i>
+								<span>Tentang Kami</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-bullseye"></i>
+								<span>Visi &amp; Misi</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- ================= PRODUK ================= -->
+				<li class="menu-dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle">
+						<span class="menu-left">
+							<i class="fa-solid fa-box-open"></i>
+							<span>Produk</span>
+						</span>
+						<i class="fa-solid fa-chevron-down dropdown-icon"></i>
+					</a>
+
+					<ul class="submenu">
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-layer-group"></i>
+								<span>Kategori Produk</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-box"></i>
+								<span>Produk</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- INFORMASI -->
+				<li>
+					<a href="#">
+						<span class="menu-left">
+							<i class="fa-solid fa-newspaper"></i>
+							<span>Informasi</span>
+						</span>
+					</a>
+				</li>
+
+				<!-- JAJARAN ANGGOTA STRUKTUR -->
+				<li>
+					<a href="#">
+
+						<span class="menu-left">
+							<i class="fa-solid fa-sitemap"></i>
+							<span>Jajaran Struktur</span>
+						</span>
+					</a>
+				</li>
+
+				<!-- FASILITAS -->
+				<li>
+					<a href="#">
+
+						<span class="menu-left">
+							<i class="fa-solid fa-industry"></i>
+							<span>Fasilitas</span>
+						</span>
+
+					</a>
+				</li>
+
+
+				<!-- KONTAK -->
+				<li>
+					<a href="#">
+
+						<span class="menu-left">
+							<i class="fa-solid fa-envelope"></i>
+							<span>Kontak</span>
+						</span>
+
+					</a>
+				</li>
+
+
+				<!-- STORY -->
+				<li>
+					<a href="#">
+
+						<span class="menu-left">
+							<i class="fa-solid fa-book-open"></i>
+							<span>Story</span>
+						</span>
+
+					</a>
+				</li>
+
+			</ul>
+
+		</div>
+
+
+		<!-- LOGOUT -->
+		<div class="sidebar-footer">
+
+			<a href="<?= base_url('auth/logout') ?>">
+
+				<span>
+					<i class="fa-solid fa-right-from-bracket"></i>
+					&nbsp; LOGOUT
+				</span>
+
+				<span class="dot"></span>
+
+			</a>
+
+		</div>
+
+	</aside>
 
     <!-- KONTEN UTAMA KANAN -->
     <main class="main-content">
