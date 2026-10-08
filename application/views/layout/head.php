@@ -616,13 +616,13 @@
                 <ul class="submenu">
 
                     <li>
-                        <a href="#">
+                        <a href="<?= base_url('admin/Kategori') ?>">
                             Kategori Produk
                         </a>
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="<?= base_url('admin/produk') ?>">
                             Produk
                         </a>
                     </li>
