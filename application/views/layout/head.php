@@ -543,7 +543,7 @@
 
             <!-- DASHBOARD -->
             <li>
-                <a href="<?= base_url('admin/dashboard') ?>">
+                <a href="<?= base_url('home') ?>">
                     <span>Dashboard</span>
                 </a>
             </li>
