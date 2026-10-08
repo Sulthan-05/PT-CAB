@@ -378,66 +378,66 @@
      ========================================================= -->
 
 <div class="profil-content">
-    <?php $no = 1;
-    foreach ($tentang as $ttg) { ?>
-        <!-- HEADER -->
-        <div class="profil-header">
 
-            <div class="profil-header-text">
-                <h1>Kelola Tentang Kami</h1>
-                <p>
-                    Kelola informasi Tentang Kami serta Visi dan Misi
-                    PT Citra Abadi Bermartabat.
-                </p>
-            </div>
+    <!-- HEADER -->
+    <div class="profil-header">
 
-            <!-- HANYA TAMBAH YANG MENGGUNAKAN MODAL -->
-            <button type="button" class="btn-tambah-profil" data-bs-toggle="modal" data-bs-target="#modalTambahProfil">
-
-                <i class="fa-solid fa-plus"></i>
-                Tambah Profil
-
-            </button>
-
+        <div class="profil-header-text">
+            <h1>Kelola Tentang Kami</h1>
+            <p>
+                Kelola informasi Tentang Kami serta Visi dan Misi
+                PT Citra Abadi Bermartabat.
+            </p>
         </div>
-        <?= $this->session->flashdata('alert') ?>
 
-        <!-- =====================================================
+        <!-- HANYA TAMBAH YANG MENGGUNAKAN MODAL -->
+        <button type="button" class="btn-tambah-profil" data-bs-toggle="modal" data-bs-target="#modalTambahProfil">
+
+            <i class="fa-solid fa-plus"></i>
+            Tambah Profil
+
+        </button>
+
+    </div>
+    <?= $this->session->flashdata('alert') ?>
+
+    <!-- =====================================================
          CARD DATA PROFIL
          ===================================================== -->
 
-        <div class="profil-card">
+    <div class="profil-card">
 
-            <div class="profil-card-header">
+        <div class="profil-card-header">
 
-                <div>
-                    <h2>Data Profil Perusahaan</h2>
+            <div>
+                <h2>Data Profil Perusahaan</h2>
 
-                    <p>
-                        Daftar informasi Tentang Kami, Visi, dan Misi
-                        yang tersimpan.
-                    </p>
-                </div>
-
+                <p>
+                    Daftar informasi Tentang Kami, Visi, dan Misi
+                    yang tersimpan.
+                </p>
             </div>
 
+        </div>
 
-            <div class="profil-table-wrapper">
 
-                <table class="profil-table">
+        <div class="profil-table-wrapper">
 
-                    <thead>
-                        <tr>
-                            <th style="width: 50px;">No</th>
-                            <th>Deskripsi</th>
-                            <th>Visi</th>
-                            <th>Misi</th>
-                            <th style="width: 150px;">Aksi</th>
-                        </tr>
-                    </thead>
+            <table class="profil-table">
 
-                    <tbody>
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">No</th>
+                        <th>Deskripsi</th>
+                        <th>Visi</th>
+                        <th>Misi</th>
+                        <th style="width: 150px;">Aksi</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <?php $no = 1;
+                    foreach ($tentang as $ttg) { ?>
                         <tr>
                             <td class="nomor"><?= $no ?></td>
                             <td class="deskripsi"><?= $ttg['deskripsi'] ?></td>
@@ -468,10 +468,116 @@
                             </td>
                         </tr>
 
+                        <?php $no++;
+                    } ?>
+                </tbody>
 
-                    </tbody>
+            </table>
 
-                </table>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="modalTambahProfil" tabindex="-1" aria-labelledby="modalTambahProfilLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+
+        <div class="modal-content">
+
+            <!-- HEADER MODAL -->
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="modalTambahProfilLabel">
+
+                    <i class="fa-solid fa-circle-plus me-2"></i>
+                    Tambah Profil Perusahaan
+
+                </h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+
+            </div>
+
+
+            <!-- BODY MODAL -->
+
+            <div class="modal-body">
+
+                <form action="<?= base_url('admin/tentang/tambah') ?>" method="post" id="formTambahProfil">
+
+                    <!-- DESKRIPSI -->
+
+                    <div class="mb-3">
+
+                        <label for="deskripsi" class="form-label">
+
+                            Deskripsi Tentang Kami
+
+                        </label>
+
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4"
+                            placeholder="Masukkan deskripsi perusahaan..." required></textarea>
+
+                    </div>
+
+
+                    <!-- VISI -->
+
+                    <div class="mb-3">
+
+                        <label for="visi" class="form-label">
+
+                            Visi Perusahaan
+
+                        </label>
+
+                        <textarea class="form-control" id="visi" name="visi" rows="3"
+                            placeholder="Masukkan visi perusahaan..." required></textarea>
+
+                    </div>
+
+
+                    <!-- MISI -->
+
+                    <div class="mb-2">
+
+                        <label for="misi" class="form-label">
+
+                            Misi Perusahaan
+
+                        </label>
+
+                        <textarea class="form-control" id="misi" name="misi" rows="4"
+                            placeholder="Masukkan misi perusahaan..." required></textarea>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- FOOTER MODAL -->
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn-modal btn-batal" data-bs-dismiss="modal">
+
+                    Batal
+
+                </button>
+
+                <button type="submit" form="formTambahProfil" class="btn-modal btn-simpan">
+
+                    <i class="fa-solid fa-check me-1"></i>
+                    Simpan
+
+                </button>
 
             </div>
 
@@ -479,113 +585,9 @@
 
     </div>
 
-    <div class="modal fade" id="modalTambahProfil" tabindex="-1" aria-labelledby="modalTambahProfilLabel"
-        aria-hidden="true">
-
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-
-            <div class="modal-content">
-
-                <!-- HEADER MODAL -->
-
-                <div class="modal-header">
-
-                    <h5 class="modal-title" id="modalTambahProfilLabel">
-
-                        <i class="fa-solid fa-circle-plus me-2"></i>
-                        Tambah Profil Perusahaan
-
-                    </h5>
-
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    </button>
-
-                </div>
-
-
-                <!-- BODY MODAL -->
-
-                <div class="modal-body">
-
-                    <form action="<?= base_url('admin/tentang/tambah') ?>" method="post" id="formTambahProfil">
-
-                        <!-- DESKRIPSI -->
-
-                        <div class="mb-3">
-
-                            <label for="deskripsi" class="form-label">
-
-                                Deskripsi Tentang Kami
-
-                            </label>
-
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4"
-                                placeholder="Masukkan deskripsi perusahaan..." required></textarea>
-
-                        </div>
-
-
-                        <!-- VISI -->
-
-                        <div class="mb-3">
-
-                            <label for="visi" class="form-label">
-
-                                Visi Perusahaan
-
-                            </label>
-
-                            <textarea class="form-control" id="visi" name="visi" rows="3"
-                                placeholder="Masukkan visi perusahaan..." required></textarea>
-
-                        </div>
-
-
-                        <!-- MISI -->
-
-                        <div class="mb-2">
-
-                            <label for="misi" class="form-label">
-
-                                Misi Perusahaan
-
-                            </label>
-
-                            <textarea class="form-control" id="misi" name="misi" rows="4"
-                                placeholder="Masukkan misi perusahaan..." required></textarea>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-
-                <!-- FOOTER MODAL -->
-
-                <div class="modal-footer">
-
-                    <button type="button" class="btn-modal btn-batal" data-bs-dismiss="modal">
-
-                        Batal
-
-                    </button>
-
-                    <button type="submit" form="formTambahProfil" class="btn-modal btn-simpan">
-
-                        <i class="fa-solid fa-check me-1"></i>
-                        Simpan
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
+</div>
+<?php $no = 1;
+foreach ($tentang as $ttg) { ?>
     <div class="modal fade" id="modalEditProfil<?= $ttg['id_profil']; ?>" tabindex="-1"
         aria-labelledby="modalTambahProfilLabel" aria-hidden="true">
 
@@ -688,7 +690,7 @@
             </div>
 
         </div>
-        <?php $no++;
-    } ?>
-</div>
+    </div>
+    <?php $no++;
+} ?>
 <?php include(APPPATH . 'views/layout/foot.php'); ?>
