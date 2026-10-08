@@ -73,6 +73,23 @@
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const alertMessage = document.getElementById('alertMessage');
+
+		if (alertMessage) {
+			setTimeout(function () {
+				alertMessage.style.transition = 'opacity 0.5s ease';
+				alertMessage.style.opacity = '0';
+
+				setTimeout(function () {
+					alertMessage.remove();
+				}, 500);
+			}, 3000);
+		}
+	});
+</script>
 </body>
 
 </html>

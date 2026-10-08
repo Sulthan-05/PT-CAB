@@ -15,7 +15,7 @@ class Tentang extends CI_Controller
             'tentang' => $tentang
         ];
 
-        $this->load->view('admin/tentang', $data);
+        $this->load->view('admin/tentang/tentang', $data);
     }
 
     public function tambah()
@@ -29,9 +29,9 @@ class Tentang extends CI_Controller
         $this->db->insert('profil_perusahaan', $data);
 
         $this->session->set_flashdata('alert', '
-            <div class="p-3 mb-4 text-sm text-red-800 rounded-md bg-green-50 border border-red-200">
-                <strong>Selamat!</strong> Berhasil Tambah Data
-            </div>
+         <div id="alertMessage" class="p-3 mb-4 text-sm text-red-800 rounded-md bg-green-50 border border-red-200">
+            <strong>Selamat!</strong> Berhasil Tambah Data
+         </div>
         ');
 
         redirect('admin/tentang');
@@ -52,9 +52,9 @@ class Tentang extends CI_Controller
         $this->db->update('profil_perusahaan', $data, $where);
 
         $this->session->set_flashdata('alert', '
-            <div class="p-3 mb-4 text-sm text-red-800 rounded-md bg-green-50 border border-red-200">
-                <strong>Selamat!</strong> Berhasil Update Data
-            </div>
+         <div id="alertMessage" class="p-3 mb-4 text-sm text-red-800 rounded-md bg-green-50 border border-red-200">
+            <strong>Selamat!</strong> Berhasil Ubah Data
+         </div>
         ');
 
         redirect('admin/tentang');
@@ -69,9 +69,9 @@ class Tentang extends CI_Controller
         $this->db->delete('profil_perusahaan', $where);
 
         $this->session->set_flashdata('alert', '
-            <div class="p-3 mb-4 text-sm text-red-800 rounded-md bg-green-50 border border-red-200">
-                <strong>Selamat!</strong> Berhasil Hapus Data
-            </div>
+         <div id="alertMessage" class="p-3 mb-4 text-sm text-red-800 rounded-md bg-green-50 border border-red-200">
+            <strong>Selamat!</strong> Berhasil Hapus Data
+         </div>
         ');
 
         redirect('admin/tentang');

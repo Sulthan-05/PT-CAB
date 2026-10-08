@@ -586,7 +586,7 @@
                 <ul class="submenu">
 
                     <li>
-                        <a href="<?= base_url('admin/tentang/tentang') ?>" class="active">
+                        <a href="<?= base_url('admin/tentang') ?>" class="active">
                             Tentang Kami
                         </a>
                     </li>
