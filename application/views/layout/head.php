@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Dashboard</title>
-    <!-- Import Font Awesome -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Import Google Font (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Reset Dasar */
         * {
             margin: 0;
             padding: 0;
@@ -29,6 +25,7 @@
         }
 
         /* ================= SIDEBAR ================= */
+
         .sidebar {
             width: 260px;
             background-color: #0b3b8c;
@@ -44,103 +41,208 @@
             transition: transform 0.3s ease;
         }
 
-        /* Logo Area */
         .sidebar-header {
+            height: 84px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 25px 20px;
+            gap: 10px;
+            padding: 16px 14px;
+            background-color: #11499b;
         }
 
         .logo-box {
-            background-color: #ffffff;
-            color: #0b3b8c;
-            width: 45px;
-            height: 45px;
+            width: 44px;
+            height: 44px;
+            background-color: #fca311;
+            color: #083b87;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 8px;
-            font-weight: 700;
+            border-radius: 9px;
             font-size: 14px;
+            font-weight: 700;
             flex-shrink: 0;
         }
 
         .brand-text h2 {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1.2;
+            color: #ffffff;
+            margin: 0;
         }
 
         .brand-text p {
-            font-size: 10px;
-            color: #a0b4d6;
-            letter-spacing: 1px;
-            margin-top: 2px;
+            font-size: 9px;
+            font-weight: 600;
+            color: #ffdca1;
+            letter-spacing: 0.8px;
+            margin-top: 3px;
+            margin-bottom: 0;
         }
 
-        /* Menu Navigasi */
+        /* ================= MENU ================= */
+
         .sidebar-menu {
             list-style: none;
-            padding: 0 15px;
-            margin-top: 10px;
+            padding: 15px 6px 10px;
+            margin: 0;
             flex-grow: 1;
             overflow-y: auto;
+            overflow-x: hidden;
         }
 
-        .sidebar-menu li {
-            margin-bottom: 5px;
+        .sidebar-menu::-webkit-scrollbar {
+            width: 7px;
         }
 
-        .sidebar-menu a {
-            display: block;
+        .sidebar-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 10px;
+        }
+
+        .sidebar-menu > li {
+            margin-bottom: 3px;
+        }
+
+        .sidebar-menu > li > a {
+            width: 100%;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             color: #ffffff;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 400;
-            padding: 12px 15px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .sidebar-menu a.active {
-            background-color: #f59e0b;
+            font-size: 12px;
             font-weight: 600;
-            color: #1a202c;
+            padding: 10px 13px;
+            border-radius: 9px;
+            transition: all 0.2s ease;
         }
 
-        .sidebar-menu a:hover:not(.active) {
-            background-color: rgba(255, 255, 255, 0.1);
+        .sidebar-menu > li > a:hover {
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
-        /* Tombol Logout */
+        .sidebar-menu > li > a.active {
+            background-color: #fca311;
+            color: #1f2937;
+            font-weight: 700;
+        }
+
+        /* Hilangkan panah bawaan Bootstrap */
+        .dropdown-toggle::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* Panah dropdown kita sendiri */
+        .dropdown-arrow {
+            font-size: 9px;
+            margin-left: auto;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-dropdown.open > .dropdown-toggle .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .menu-dropdown > .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .menu-dropdown.open > .dropdown-toggle {
+            background-color: #fca311;
+            color: #1f2937;
+            font-weight: 700;
+        }
+
+        /* ================= SUBMENU ================= */
+
+        .submenu {
+            list-style: none;
+            margin: 2px 0 5px;
+            padding: 0 0 0 7px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s ease;
+        }
+
+        .menu-dropdown.open .submenu {
+            max-height: 180px;
+        }
+
+        .submenu li {
+            margin: 2px 0;
+        }
+
+        .submenu a {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 34px;
+            padding: 8px 13px;
+            border-radius: 8px;
+            background-color: rgba(30, 64, 175, 0.45);
+            color: #e5ecff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+
+        .submenu a.active {
+            background-color: #2856a7;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* ================= LOGOUT ================= */
+
         .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 6px 7px;
+            background-color: #0b3b8c;
         }
 
         .sidebar-footer a {
+            min-height: 54px;
+            padding: 14px 13px;
+            background-color: #1851a0;
+            border-radius: 9px;
             color: #ffffff;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+        .sidebar-footer a:hover {
+            background-color: #205bac;
+        }
+
         .sidebar-footer .dot {
             width: 8px;
             height: 8px;
-            background-color: #10b981;
+            background-color: #62f6b1;
             border-radius: 50%;
         }
 
         /* ================= KONTEN UTAMA ================= */
+
         .main-content {
             flex-grow: 1;
             margin-left: 260px;
-            /* Memberi ruang untuk sidebar fixed */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -148,7 +250,8 @@
             transition: margin-left 0.3s ease, width 0.3s ease;
         }
 
-        /* Top Bar */
+        /* ================= TOP BAR ================= */
+
         .top-bar {
             display: flex;
             align-items: center;
@@ -210,13 +313,13 @@
             white-space: nowrap;
         }
 
-        /* Area Konten */
+        /* ================= AREA KONTEN ================= */
+
         .content-area {
             padding: 0 30px 30px 30px;
             flex-grow: 1;
         }
 
-        /* Banner Biru */
         .banner {
             background: linear-gradient(135deg, #1c3faa, #2a5298);
             color: #ffffff;
@@ -232,14 +335,14 @@
             line-height: 1.4;
         }
 
-        /* Grid Statistik */
+        /* ================= STATISTIK ================= */
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
         }
 
-        /* Kartu Statistik (Tanpa border & shadow tebal) */
         .stat-item {
             background-color: #ffffff;
             border-radius: 12px;
@@ -288,7 +391,6 @@
             flex-shrink: 0;
         }
 
-        /* Warna Ikon */
         .icon-fasilitas {
             background-color: #fcece1;
             color: #d98e4a;
@@ -305,7 +407,8 @@
             color: #4a5ec7;
         }
 
-        /* Overlay untuk mobile */
+        /* ================= OVERLAY ================= */
+
         .overlay {
             display: none;
             position: fixed;
@@ -319,7 +422,6 @@
 
         /* ================= RESPONSIVE ================= */
 
-        /* Tablet & HP (Lebar < 992px) */
         @media (max-width: 992px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -335,6 +437,10 @@
             }
 
             .menu-toggle {
+                display: block;
+            }
+
+            .overlay.active {
                 display: block;
             }
 
@@ -355,7 +461,6 @@
             }
         }
 
-        /* HP Kecil (Lebar < 768px) */
         @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: 1fr;
@@ -381,7 +486,6 @@
             }
         }
 
-        /* HP Sangat Kecil (Lebar < 480px) */
         @media (max-width: 480px) {
             .top-bar {
                 gap: 10px;
@@ -417,70 +521,192 @@
 
 <body>
 
-    <!-- Overlay untuk mobile saat sidebar terbuka -->
-    <div class="overlay" id="overlay"></div>
+<div class="overlay" id="overlay"></div>
 
-    <!-- SIDEBAR KIRI -->
-	<aside class="sidebar" id="sidebar">
-		<div>
-			<!-- LOGO -->
-			<div class="sidebar-header">
-				<div class="logo-box">CAB</div>
-				<div class="brand-text">
-					<h2>Citra Abadi Bermartabat</h2>
-					<p>ADMIN</p>
-				</div>
-			</div>
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
 
+    <div>
 
-            <ul class="sidebar-menu">
-                <li><a href="#" class="active">Dashboard</a></li>
-                <li><a href="#">Website</a></li>
-                <li><a href="<?= base_url('admin/tentang') ?>">Tentang Kami</a></li>
-                <li><a href="#">Produk</a></li>
-                <li><a href="#">Informasi</a></li>
-                <li><a href="#">Jajaran Anggota Struktur</a></li>
-                <li><a href="#">Fasilitas</a></li>
-                <li><a href="#">Kontak</a></li>
-                <li><a href="#">Story</a></li>
-            </ul>
+        <!-- LOGO -->
+        <div class="sidebar-header">
+            <div class="logo-box">CAB</div>
+
+            <div class="brand-text">
+                <h2>Citra Abadi<br>Bermartabat</h2>
+                <p>ADMIN</p>
+            </div>
         </div>
 
-			<!-- MENU SIDEBAR -->
-		</div>
+        <!-- MENU -->
+        <ul class="sidebar-menu">
 
+            <!-- DASHBOARD -->
+            <li>
+                <a href="<?= base_url('admin/dashboard') ?>">
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
-		<!-- LOGOUT -->
-		<div class="sidebar-footer">
+            <!-- WEBSITE -->
+            <li class="menu-dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle">
+                    <span>Website</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </a>
 
-			<a href="<?= base_url('auth/logout') ?>">
+                <ul class="submenu">
+                    <li>
+                        <a href="#">
+                            Beranda
+                        </a>
+                    </li>
 
-				<span>
-					<i class="fa-solid fa-right-from-bracket"></i>
-					&nbsp; LOGOUT
-				</span>
+                    <li>
+                        <a href="#">
+                            Header
+                        </a>
+                    </li>
 
-				<span class="dot"></span>
+                    <li>
+                        <a href="#">
+                            Footer
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-			</a>
+            <!-- TENTANG KAMI -->
+            <li class="menu-dropdown open">
+                <a href="javascript:void(0)" class="dropdown-toggle active">
+                    <span>Tentang Kami</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </a>
 
-		</div>
+                <ul class="submenu">
 
-	</aside>
+                    <li>
+                        <a href="<?= base_url('admin/tentang/tentang') ?>" class="active">
+                            Tentang Kami
+                        </a>
+                    </li>
 
-    <!-- KONTEN UTAMA KANAN -->
-    <main class="main-content">
+                    <li>
+                        <a href="#">
+                            Profil Perusahaan
+                        </a>
+                    </li>
 
-        <!-- Top Bar (Search & Profil) -->
-        <header class="top-bar">
-            <div style="display: flex; align-items: center; width: 100%; gap: 15px;">
-                <button class="menu-toggle" id="menuToggle">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <div class="search-container">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Cari modul, SKU, dokumen...">
-                </div>
+                    <li>
+                        <a href="#">
+                            Visi &amp; Misi
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <!-- PRODUK -->
+            <li class="menu-dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle">
+                    <span>Produk</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </a>
+
+                <ul class="submenu">
+
+                    <li>
+                        <a href="#">
+                            Kategori Produk
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Produk
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <!-- INFORMASI -->
+            <li>
+                <a href="#">
+                    <span>Informasi</span>
+                </a>
+            </li>
+
+            <!-- JAJARAN ANGGOTA STRUKTUR -->
+            <li>
+                <a href="#">
+                    <span>Jajaran Anggota Struktur</span>
+                </a>
+            </li>
+
+            <!-- FASILITAS -->
+            <li>
+                <a href="#">
+                    <span>Fasilitas</span>
+                </a>
+            </li>
+
+            <!-- KONTAK -->
+            <li>
+                <a href="#">
+                    <span>Kontak</span>
+                </a>
+            </li>
+
+            <!-- STORY -->
+            <li>
+                <a href="#">
+                    <span>Story</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <!-- LOGOUT -->
+    <div class="sidebar-footer">
+        <a href="<?= base_url('auth/logout') ?>">
+            <span>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                &nbsp; LOGOUT
+            </span>
+
+            <span class="dot"></span>
+        </a>
+    </div>
+
+</aside>
+
+<!-- KONTEN UTAMA -->
+<main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="top-bar">
+
+        <div style="display: flex; align-items: center; width: 100%; gap: 15px;">
+
+            <button class="menu-toggle" id="menuToggle" type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    placeholder="Cari modul, SKU, dokumen..."
+                >
             </div>
-            <button class="btn-profil">Profil</button>
-        </header>
+
+        </div>
+
+        <button class="btn-profil" type="button">
+            Profil
+        </button>
+
+    </header>
