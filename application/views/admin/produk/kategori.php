@@ -444,7 +444,7 @@
                                 </button>
 
                                 <a href="<?= base_url('admin/kategori/hapus/' . $ttg['id_kategori']) ?>" type="submit"
-                                    onclick="return confirm('Anda Yakin Hapus Data Ini')" class="btn-aksi btn-hapus">
+                                    onclick="return confirm('Anda Yakin Hapus Data Ini')" class="btn-aksi btn-hapus mt-3">
 
                                     <i class="fa-solid fa-trash"></i>
                                     Hapus

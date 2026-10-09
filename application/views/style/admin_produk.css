@@ -741,3 +741,62 @@ textarea.form-control {
         font-size: 12px;
     }
 }
+
+
+/* HEADER PRODUK */
+.produk-header {
+    background: #0A2F6C;
+    padding: 28px 30px;
+    border-radius: 16px;
+    color: #FFFFFF;
+    box-shadow: 0 5px 15px rgba(10, 47, 108, 0.12);
+}
+
+.produk-header h3 {
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+.produk-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+/* TOMBOL TAMBAH PRODUK */
+.btn-tambah-produk {
+    background-color: #FBBF24;
+    color: #0A2F6C;
+    border: 1px solid #FBBF24;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.btn-tambah-produk:hover {
+    background-color: #F59E0B;
+    border-color: #F59E0B;
+    color: #0A2F6C;
+    transform: translateY(-1px);
+}
+
+.btn-tambah-produk:focus {
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 767.98px) {
+    .produk-header {
+        padding: 22px 20px;
+    }
+
+    .produk-header h3 {
+        font-size: 21px;
+    }
+
+    .btn-tambah-produk {
+        width: 100%;
+    }
+}
