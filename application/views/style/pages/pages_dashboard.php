@@ -294,7 +294,7 @@
             <li class="nav-item"><a class="nav-link nav-link-cab p-1" href="#">Kontak Kami</a></li>
           </ul>
 
-          <a href="#" class="btn btn-login">Login</a>
+          <a href="<?= base_url('auth') ?>" class="btn btn-login">Login</a>
         </div>
       </div>
     </nav>
