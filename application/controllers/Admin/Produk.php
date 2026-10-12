@@ -1,21 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Produk extends CI_Controller {
+class Produk extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
-        // Load library yang diperlukan
-       
-        // Cek login admin (sesuaikan dengan sistem login Anda)
-        // if (!$this->session->userdata('logged_in')) {
-        //     redirect('login');
-
-        // }
+        if ($this->session->userdata('islog') == FALSE) {
+            redirect('beranda');
+        }
+        if ($this->session->userdata('role') == 'admin') {
+            redirect('beranda');
+        }
     }
 
     // Halaman Utama Admin Produk
-    public function index() {
+    public function index()
+    {
         $data['judul'] = 'Produk Beras';
 
         // Ambil data kategori untuk filter dan dropdown
@@ -35,7 +37,8 @@ class Produk extends CI_Controller {
     }
 
     // Method Tambah Produk
-    public function tambah() {
+    public function tambah()
+    {
         $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required|trim');
         $this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
         $this->form_validation->set_rules('berat', 'Berat', 'required|trim');
@@ -43,16 +46,16 @@ class Produk extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('alert', '
                 <div id="alertProduk" class="alert alert-danger">
-                    '.validation_errors().'
+                    ' . validation_errors() . '
                 </div>
             ');
             redirect('admin/produk');
         } else {
             // Konfigurasi Upload
-            $config['upload_path']   = './assets/uploads/produk/';
+            $config['upload_path'] = './assets/uploads/produk/';
             $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size']      = 2048; // 2MB
-            $config['encrypt_name']  = TRUE; // Nama file unik otomatis
+            $config['max_size'] = 2048; // 2MB
+            $config['encrypt_name'] = TRUE; // Nama file unik otomatis
 
             // Buat folder jika belum ada
             if (!is_dir($config['upload_path'])) {
@@ -96,17 +99,17 @@ class Produk extends CI_Controller {
             }
 
             $data = [
-                'id_kategori'       => $this->input->post('id_kategori'),
-                'nama_produk'       => $nama_produk,
-                'slug'              => $slug,
+                'id_kategori' => $this->input->post('id_kategori'),
+                'nama_produk' => $nama_produk,
+                'slug' => $slug,
                 'deskripsi_singkat' => $this->input->post('deskripsi_singkat'),
-                'deskripsi'         => $this->input->post('deskripsi'),
-                'spesifikasi'       => $this->input->post('spesifikasi'),
-                'berat'             => $this->input->post('berat'),
-                'foto_utama'        => $foto_utama,
-                'nomor_whatsapp'    => $nomor_wa,
-                'tautan_whatsapp'   => $tautan_wa,
-                'produk_unggulan'   => $this->input->post('produk_unggulan') ? 1 : 0
+                'deskripsi' => $this->input->post('deskripsi'),
+                'spesifikasi' => $this->input->post('spesifikasi'),
+                'berat' => $this->input->post('berat'),
+                'foto_utama' => $foto_utama,
+                'nomor_whatsapp' => $nomor_wa,
+                'tautan_whatsapp' => $tautan_wa,
+                'produk_unggulan' => $this->input->post('produk_unggulan') ? 1 : 0
             ];
 
             $this->db->insert('produk', $data);
@@ -121,14 +124,15 @@ class Produk extends CI_Controller {
     }
 
     // Method Edit Produk
-    public function edit($id) {
-        $id = (int)$id;
+    public function edit($id)
+    {
+        $id = (int) $id;
         $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required|trim');
-        
+
         if ($this->form_validation->run() == FALSE) {
-             $this->session->set_flashdata('alert', '
+            $this->session->set_flashdata('alert', '
                 <div id="alertProduk" class="alert alert-danger">
-                    '.validation_errors().'
+                    ' . validation_errors() . '
                 </div>
             ');
             redirect('admin/produk');
@@ -140,10 +144,10 @@ class Produk extends CI_Controller {
             }
 
             // Konfigurasi Upload
-            $config['upload_path']   = './assets/uploads/produk/';
+            $config['upload_path'] = './assets/uploads/produk/';
             $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size']      = 2048;
-            $config['encrypt_name']  = TRUE;
+            $config['max_size'] = 2048;
+            $config['encrypt_name'] = TRUE;
             $this->upload->initialize($config);
 
             $foto_utama = $old_data->foto_utama; // Default foto lama
@@ -184,17 +188,17 @@ class Produk extends CI_Controller {
             }
 
             $data = [
-                'id_kategori'       => $this->input->post('id_kategori'),
-                'nama_produk'       => $nama_produk,
-                'slug'              => $slug,
+                'id_kategori' => $this->input->post('id_kategori'),
+                'nama_produk' => $nama_produk,
+                'slug' => $slug,
                 'deskripsi_singkat' => $this->input->post('deskripsi_singkat'),
-                'deskripsi'         => $this->input->post('deskripsi'),
-                'spesifikasi'       => $this->input->post('spesifikasi'),
-                'berat'             => $this->input->post('berat'),
-                'foto_utama'        => $foto_utama,
-                'nomor_whatsapp'    => $nomor_wa,
-                'tautan_whatsapp'   => $tautan_wa,
-                'produk_unggulan'   => $this->input->post('produk_unggulan') ? 1 : 0
+                'deskripsi' => $this->input->post('deskripsi'),
+                'spesifikasi' => $this->input->post('spesifikasi'),
+                'berat' => $this->input->post('berat'),
+                'foto_utama' => $foto_utama,
+                'nomor_whatsapp' => $nomor_wa,
+                'tautan_whatsapp' => $tautan_wa,
+                'produk_unggulan' => $this->input->post('produk_unggulan') ? 1 : 0
             ];
 
             $this->db->where('id_produk', $id);
@@ -210,17 +214,18 @@ class Produk extends CI_Controller {
     }
 
     // Method Hapus Produk
-    public function hapus($id) {
-        $id = (int)$id;
-        
+    public function hapus($id)
+    {
+        $id = (int) $id;
+
         // Ambil data untuk hapus file fisik
         $produk = $this->db->get_where('produk', ['id_produk' => $id])->row();
-        
+
         if ($produk) {
             if ($produk->foto_utama && file_exists('./assets/uploads/produk/' . $produk->foto_utama)) {
                 unlink('./assets/uploads/produk/' . $produk->foto_utama);
             }
-            
+
             $this->db->where('id_produk', $id);
             $this->db->delete('produk');
 
@@ -230,13 +235,13 @@ class Produk extends CI_Controller {
                 </div>
             ');
         } else {
-             $this->session->set_flashdata('alert', '
+            $this->session->set_flashdata('alert', '
                 <div id="alertProduk" class="alert alert-danger">
                     Produk tidak ditemukan.
                 </div>
             ');
         }
-        
+
         redirect('admin/produk');
     }
 }
