@@ -557,7 +557,7 @@
 
                 <ul class="submenu">
                     <li>
-                        <a href="#">
+                        <a href="<?= base_url('admin/beranda') ?>">
                             Beranda
                         </a>
                     </li>

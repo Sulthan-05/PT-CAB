@@ -3,177 +3,88 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Header extends CI_Controller
 {
+    // SESUAIKAN jika nama tabel di database Anda berbeda
+    private $tabel = 'website_header';
 
     public function __construct()
     {
         parent::__construct();
+        $this->load->database();
+        $this->load->library(['session', 'form_validation']);
+        $this->load->helper(['url', 'form']);
 
-        // === SESUAIKAN dengan mekanisme auth project Anda ===
-        // if ($this->session->userdata('islog')) {
-        //     redirect('beranda');
-        // }
-        // =====================================================
+        if (!$this->session->userdata('islog')) {
+            redirect('auth');
+        }
     }
 
-    /**
-     * Halaman pengelolaan Header
-     */
+    private function ambil_header()
+    {
+        return $this->db->order_by('id', 'ASC')->limit(1)->get($this->tabel)->row();
+    }
+
     public function index()
     {
-        $header = $this->_get_header_row();
-
-        $data['title'] = 'Pengelolaan Header Website';
-        $data['header'] = $header;
-
-        // $this->load->view('admin/layout/header', $data);
+        $data['header'] = $this->ambil_header();
         $this->load->view('admin/website/header', $data);
-        // $this->load->view('admin/layout/footer', $data);
     }
 
-    /**
-     * Simpan perubahan Header (POST)
-     */
-    public function save()
+    public function simpan()
     {
-        // === SESUAIKAN dengan mekanisme auth project Anda ===
-        if (!$this->session->userdata('logged_in')) {
-            show_error('Akses ditolak.', 403);
-        }
-        // =====================================================
-
         if ($this->input->method() !== 'post') {
-            show_error('Metode tidak diizinkan.', 405);
+            redirect('admin/header');
         }
 
-        // --- Validasi server-side ---
-        $this->load->library('form_validation');
-
-        $this->form_validation->set_rules(
-            'nama_perusahaan',
-            'Nama Perusahaan',
-            'required|trim|max_length[180]'
-        );
-        $this->form_validation->set_rules(
-            'cta_text',
-            'Teks CTA',
-            'required|trim|max_length[100]'
-        );
-        $this->form_validation->set_rules(
-            'cta_url',
-            'URL CTA',
-            'required|trim|max_length[255]|callback__validate_cta_url'
-        );
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama perusahaan', 'trim|required|max_length[180]');
+        $this->form_validation->set_rules('cta_text', 'Teks CTA', 'trim|required|max_length[100]');
+        $this->form_validation->set_rules('cta_url', 'URL CTA', 'trim|required|max_length[255]|callback_valid_cta_url');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->session->set_flashdata('error', validation_errors());
-            redirect('admin/header');
+            // Validasi gagal: database tidak disentuh, form tampil lagi dengan isian pengguna
+            $data['header'] = $this->ambil_header();
+            $this->load->view('admin/website/header', $data);
             return;
         }
 
-        $nama_perusahaan = $this->input->post('nama_perusahaan', TRUE);
-        $cta_text = $this->input->post('cta_text', TRUE);
-        $cta_url = $this->input->post('cta_url', TRUE);
-
-        // --- Tentukan baris konfigurasi yang sah ---
-        $row = $this->_get_header_row();
-
-        $payload = [
-            'nama_perusahaan' => $nama_perusahaan,
-            'cta_text' => $cta_text,
-            'cta_url' => $cta_url,
+        $isi = [
+            'nama_perusahaan' => $this->input->post('nama_perusahaan', TRUE),
+            'cta_text' => $this->input->post('cta_text', TRUE),
+            'cta_url' => $this->input->post('cta_url', TRUE),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
 
-        if ($row) {
-            // UPDATE baris yang ada — logo TIDAK disentuh
-            $this->db->where('id', (int) $row->id);
-            $ok = $this->db->update('website_header', $payload);
-            $msg = $ok
-                ? 'Konfigurasi Header berhasil diperbarui.'
-                : 'Gagal memperbarui konfigurasi Header.';
+        $baris = $this->ambil_header();
+
+        if ($baris) {
+            $ok = $this->db->where('id', $baris->id)->update($this->tabel, $isi);
         } else {
-            // Tabel kosong: insert satu baris awal (logo dibiarkan NULL)
-            $payload['logo'] = NULL;
-            $ok = $this->db->insert('website_header', $payload);
-            $msg = $ok
-                ? 'Konfigurasi Header berhasil dibuat.'
-                : 'Gagal membuat konfigurasi Header.';
+            // id tidak diisi, biar auto increment yang membuatnya
+            $ok = $this->db->insert($this->tabel, $isi);
         }
 
-        $this->session->set_flashdata($ok ? 'success' : 'error', $msg);
+        if ($ok) {
+            $this->session->set_flashdata('sukses', 'Pengaturan header berhasil disimpan.');
+        } else {
+            $this->session->set_flashdata('gagal', 'Gagal menyimpan data. Data lama tidak diubah.');
+        }
         redirect('admin/header');
     }
 
-    /**
-     * Callback validasi URL CTA.
-     * Izinkan: http(s):// valid, path internal (/...), anchor (#...).
-     * Tolak: javascript:, data:, vbscript:, skema aneh.
-     */
-    public function _validate_cta_url($value)
+    // Hanya izinkan path internal (/produk) atau http/https
+    public function valid_cta_url($url)
     {
-        $value = trim($value);
-
-        if ($value === '') {
-            $this->form_validation->set_message(
-                '_validate_cta_url',
-                'URL CTA wajib diisi.'
-            );
+        if (preg_match('/[\x00-\x1F\x7F\s]/', $url)) {
+            $this->form_validation->set_message('valid_cta_url', 'URL CTA tidak boleh mengandung spasi atau karakter kontrol.');
             return FALSE;
         }
-
-        // Anchor internal
-        if ($value[0] === '#') {
-            if (preg_match('/^#[A-Za-z0-9_\-]+$/', $value)) {
-                return TRUE;
-            }
-            $this->form_validation->set_message(
-                '_validate_cta_url',
-                'Anchor tidak valid.'
-            );
-            return FALSE;
+        if (strpos($url, '/') === 0 && strpos($url, '//') !== 0) {
+            return TRUE;
         }
-
-        // Path internal
-        if ($value[0] === '/') {
-            if (strpos($value, '//') === FALSE) { // hindari protocol-relative
-                return TRUE;
-            }
-            $this->form_validation->set_message(
-                '_validate_cta_url',
-                'Path internal tidak valid.'
-            );
-            return FALSE;
+        $skema = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+        if (filter_var($url, FILTER_VALIDATE_URL) && in_array($skema, ['http', 'https'], TRUE)) {
+            return TRUE;
         }
-
-        // URL absolut
-        if (filter_var($value, FILTER_VALIDATE_URL)) {
-            $scheme = strtolower((string) parse_url($value, PHP_URL_SCHEME));
-            if (in_array($scheme, ['http', 'https'], TRUE)) {
-                return TRUE;
-            }
-        }
-
-        $this->form_validation->set_message(
-            '_validate_cta_url',
-            'URL CTA hanya boleh http/https, path internal (/...), atau anchor (#...).'
-        );
+        $this->form_validation->set_message('valid_cta_url', 'URL CTA harus diawali http://, https://, atau berupa path internal seperti /produk.');
         return FALSE;
-    }
-
-    /**
-     * Ambil satu baris konfigurasi Header.
-     * Jika tabel kosong, kembalikan NULL (bukan buat baris baru).
-     */
-    private function _get_header_row()
-    {
-        $row = $this->db
-            ->select('id, nama_perusahaan, logo, cta_text, cta_url, updated_at')
-            ->from('website_header')
-            ->order_by('id', 'ASC')
-            ->limit(1)
-            ->get()
-            ->row();
-
-        return $row ?: NULL;
     }
 }
