@@ -2,62 +2,106 @@
 <?php
 $row = $beranda ?? null;
 $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at)) : null;
+// Ambil nilai kolom dari database (aman jika baris belum ada)
+$v = function ($k) use ($row) {
+    return isset($row->$k) ? $row->$k : '';
+};
 ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-    .cv {
+    /* Semua aturan dibatasi di bawah .bw agar tidak memengaruhi halaman admin lain */
+    .bw {
         --b900: #0A2F6C;
         --b700: #0D47A1;
         --b500: #1565C0;
         --gold: #F59E0B;
         --gold-l: #FBBF24;
+        --bg: #F5F7FB;
         --ink: #0F172A;
         --sub: #475569;
         --mut: #64748B;
         --line: #E2E8F0;
+        --bw-top: 96px; /* jarak pratinjau dari atas saat menempel; sesuaikan dengan tinggi topbar */
         font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-        color: var(--ink)
+        color: var(--ink);
+        /* Jarak dari sidebar & tepi layar, dan batas lebar agar tidak terlalu penuh */
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: clamp(20px, 3.2vw, 44px) clamp(16px, 3.4vw, 48px) 56px
     }
 
-    .cv *,
-    .cv *::before,
-    .cv *::after {
+    .bw *,
+    .bw *::before,
+    .bw *::after {
+        box-sizing: border-box
+    }
+
+    .bw input,
+    .bw textarea,
+    .bw button {
         font-family: inherit
     }
 
-    .cv .disp {
-        font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif
-    }
-
-    /* ---------- Kepala ---------- */
-    .cv-head {
+    /* ---------- Kepala halaman ---------- */
+    .bw-head {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: flex-end;
         justify-content: space-between;
-        gap: 10px 20px;
-        margin-bottom: 18px
+        gap: 14px 24px;
+        padding-bottom: 26px;
+        margin-bottom: 32px;
+        border-bottom: 1px solid var(--line)
     }
 
-    .cv-head h1 {
-        font-family: 'Bricolage Grotesque', sans-serif;
+    .bw-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: .76rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--b500)
+    }
+
+    .bw-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 3px;
+        border-radius: 3px;
+        background: var(--gold)
+    }
+
+    .bw-head h1 {
+        font-size: clamp(1.7rem, 3.6vw, 2.35rem);
         font-weight: 800;
-        font-size: clamp(1.6rem, 4vw, 2.2rem);
         letter-spacing: -.02em;
+        line-height: 1.1;
         color: var(--b900);
-        margin: 0;
-        line-height: 1.1
+        margin: 8px 0 8px
     }
 
-    .cv-pills {
+    .bw-head p {
+        margin: 0;
+        max-width: 58ch;
+        color: var(--sub);
+        font-size: .95rem;
+        line-height: 1.6
+    }
+
+    .bw-pills {
         display: flex;
         flex-wrap: wrap;
         gap: 8px
     }
 
-    .cv-pill {
+    .bw-pill {
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -69,384 +113,295 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
         color: var(--b700)
     }
 
-    .cv-pill.warn {
+    .bw-pill.warn {
         display: none;
         background: #FEF3C7;
         color: #92400E
     }
 
-    .cv .alert {
+    .bw .alert {
         border: 0;
         border-radius: 12px;
         font-size: .92rem
     }
 
-    /* ---------- Panggung ---------- */
-    .stage {
-        border-radius: 22px;
-        padding: clamp(14px, 3vw, 28px);
-        background-color: #EEF3FA;
-        background-image: radial-gradient(#C7D4E6 1.2px, transparent 1.3px);
-        background-size: 20px 20px;
-        border: 1px solid var(--line)
-    }
-
-    .stage-bar {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px 16px;
-        margin-bottom: 18px
-    }
-
-    .stage-hint {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: .92rem;
-        font-weight: 600;
-        color: var(--b900);
-        background: #fff;
-        border-radius: 999px;
-        padding: 8px 16px 8px 10px;
-        box-shadow: 0 1px 2px rgba(15, 23, 42, .08)
-    }
-
-    .stage-hint i {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--gold-l);
-        color: var(--b900);
-        font-size: .8rem
-    }
-
-    .seg {
-        display: inline-flex;
-        background: #fff;
-        border-radius: 12px;
-        padding: 4px;
-        box-shadow: 0 1px 2px rgba(15, 23, 42, .08)
-    }
-
-    .seg button {
-        border: 0;
-        background: transparent;
-        color: var(--sub);
-        font-weight: 600;
-        font-size: .85rem;
-        padding: 7px 14px;
-        border-radius: 9px;
-        display: inline-flex;
-        align-items: center;
-        gap: 7px
-    }
-
-    .seg button.on {
-        background: var(--b700);
-        color: #fff
-    }
-
-    .seg button:focus-visible {
-        outline: 3px solid rgba(21, 101, 192, .4);
-        outline-offset: 1px
-    }
-
-    .frame {
-        container-type: inline-size;
-        container-name: frm;
-        max-width: 100%;
-        margin: 0 auto;
-        transition: max-width .3s ease
-    }
-
-    .frame.mobile {
-        max-width: 360px
-    }
-
-    /* ---------- Banner yang bisa diedit ---------- */
-    .hero {
+    /* ---------- Kepala bermotif batik kawung (biru + kuning PT-CAB) ---------- */
+    .bw-head {
         position: relative;
         overflow: hidden;
-        color: #fff;
-        padding: clamp(40px, 9cqi, 64px) clamp(20px, 6cqi, 52px) 0 clamp(26px, 7cqi, 62px);
+        align-items: flex-end;
+        padding: clamp(24px, 3.4vw, 40px) clamp(20px, 3.4vw, 44px);
+        margin-bottom: 32px;
+        border: 0;
         border-radius: 20px;
-        background: linear-gradient(160deg, var(--b700) 0%, var(--b500) 55%, var(--b900) 100%);
-        box-shadow: 0 30px 60px -24px rgba(10, 47, 108, .6)
+        color: #fff;
+        background-color: var(--b900);
+        background-image:
+            linear-gradient(90deg, rgba(10, 47, 108, .92) 0%, rgba(10, 47, 108, .55) 55%, rgba(10, 47, 108, 0) 100%),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%2393C5FD' stroke-opacity='.32' stroke-width='1.2'%3E%3Cellipse cx='36' cy='18' rx='10' ry='17'/%3E%3Cellipse cx='36' cy='54' rx='10' ry='17'/%3E%3Cellipse cx='18' cy='36' rx='17' ry='10'/%3E%3Cellipse cx='54' cy='36' rx='17' ry='10'/%3E%3Ccircle cx='36' cy='36' r='4'/%3E%3C/g%3E%3Cg fill='%23FBBF24' fill-opacity='.55'%3E%3Ccircle cx='36' cy='36' r='1.6'/%3E%3Ccircle cx='0' cy='0' r='1.6'/%3E%3Ccircle cx='72' cy='0' r='1.6'/%3E%3Ccircle cx='0' cy='72' r='1.6'/%3E%3Ccircle cx='72' cy='72' r='1.6'/%3E%3C/g%3E%3C/svg%3E"),
+            linear-gradient(135deg, var(--b700) 0%, var(--b900) 100%);
+        background-size: auto, 72px 72px, auto
     }
 
-    .hero::before {
+    .bw-head::after {
         content: "";
         position: absolute;
-        inset: 0 auto 0 0;
-        width: 8px;
-        background: var(--gold-l)
+        inset: auto 0 0 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-l) 40%, transparent 100%)
     }
 
-    .ed {
+    .bw-head>* {
         position: relative;
-        margin-bottom: 8px
+        z-index: 1
     }
 
-    .ed-in {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        padding: 6px 10px;
-        border: 0;
-        border-radius: 10px;
-        background: transparent;
-        color: inherit;
-        font: inherit;
-        line-height: inherit;
-        letter-spacing: inherit;
-        resize: none;
-        overflow: hidden;
-        caret-color: var(--gold-l);
-        box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .0);
-        transition: background-color .15s, box-shadow .15s
-    }
-
-    .ed-in::placeholder {
-        color: rgba(255, 255, 255, .42);
-        font-weight: 500
-    }
-
-    .ed:hover .ed-in {
-        background: rgba(255, 255, 255, .08);
-        box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .28)
-    }
-
-    .ed-in:focus {
-        outline: 0;
-        background: rgba(255, 255, 255, .12);
-        box-shadow: 0 0 0 2.5px var(--gold-l)
-    }
-
-    .ed-in.is-invalid {
-        background: rgba(220, 38, 38, .22);
-        box-shadow: 0 0 0 2px #FCA5A5
-    }
-
-    /* Tag nama kolom saat disorot */
-    .ed::before {
-        content: attr(data-tag);
-        position: absolute;
-        left: 10px;
-        top: -9px;
-        transform: translateY(-100%);
-        z-index: 2;
-        background: var(--gold-l);
-        color: var(--b900);
-        font-size: .72rem;
-        font-weight: 700;
-        padding: 2px 9px;
-        border-radius: 6px;
-        white-space: nowrap;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity .15s
-    }
-
-    .ed:hover::before,
-    .ed:focus-within::before {
-        opacity: 1
-    }
-
-    .ed.changed::after {
-        content: "";
-        position: absolute;
-        right: -3px;
-        top: -3px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--gold-l);
-        box-shadow: 0 0 0 3px rgba(10, 47, 108, .9)
-    }
-
-    .ed-count {
-        position: absolute;
-        right: 8px;
-        bottom: 6px;
-        font-size: .72rem;
-        font-weight: 600;
-        font-variant-numeric: tabular-nums;
-        color: #DBEAFE;
-        background: rgba(10, 47, 108, .85);
-        padding: 1px 8px;
-        border-radius: 999px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity .15s
-    }
-
-    .ed:focus-within .ed-count {
-        opacity: 1
-    }
-
-    .ed-count.near {
+    .bw-head .bw-eyebrow {
         color: var(--gold-l)
     }
 
-    .ed-count.full {
-        color: #FCA5A5
+    .bw-head h1 {
+        color: #fff
     }
 
-    .ed-err {
-        display: none;
-        margin: 6px 0 0 4px;
-        font-size: .8rem;
-        font-weight: 700;
-        color: #FEE2E2
-    }
-
-    .ed-in.is-invalid~.ed-err {
-        display: block
-    }
-
-    .t-title {
-        font-family: 'Bricolage Grotesque', sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.55rem, 7.4cqi, 2.9rem);
-        line-height: 1.08;
-        letter-spacing: -.025em
-    }
-
-    .t-desc {
-        font-size: clamp(.9rem, 2.6cqi, 1.05rem);
-        line-height: 1.65;
+    .bw-head p {
         color: #DBEAFE
     }
 
-    .t-desc::placeholder {
-        color: rgba(219, 234, 254, .42)
+    .bw-head .bw-pill {
+        background: rgba(255, 255, 255, .14);
+        color: #fff
     }
 
-    .cta-row {
+    .bw-head .bw-pill.warn {
+        background: var(--gold-l);
+        color: var(--b900)
+    }
+
+    /* ---------- Grid asimetris ---------- */
+    .bw-grid>* {
+        min-width: 0
+    }
+
+    .bw-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        align-items: start
+    }
+
+    @media (min-width: 992px) {
+        .bw-grid {
+            grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+            gap: 40px
+        }
+    }
+
+    /* ---------- Panel isian ---------- */
+    .panel {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px
+    }
+
+    .sec {
+        padding: 24px 24px 8px
+    }
+
+    .sec+.sec {
+        border-top: 1px solid var(--line)
+    }
+
+    .sec-h {
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 10px 14px;
-        margin: 22px 0 clamp(30px, 7cqi, 48px) 10px
+        gap: 12px;
+        align-items: flex-start;
+        margin-bottom: 20px
     }
 
-    .cta {
+    .sec-n {
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        background: var(--b900);
+        color: var(--gold-l);
+        font-weight: 800;
+        font-size: .8rem;
+        display: grid;
+        place-items: center
+    }
+
+    .sec-h h2 {
+        font-size: 1rem;
+        font-weight: 800;
+        margin: 0;
+        color: var(--b900)
+    }
+
+    .sec-h p {
+        margin: 2px 0 0;
+        font-size: .82rem;
+        color: var(--mut);
+        line-height: 1.5
+    }
+
+    .fld {
+        margin-bottom: 18px
+    }
+
+    .fld-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 6px
+    }
+
+    .fld label {
+        font-size: .82rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0
+    }
+
+    .fld-meta {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: var(--gold);
+        font-size: .74rem;
+        font-weight: 600;
+        color: var(--mut);
+        font-variant-numeric: tabular-nums
+    }
+
+    .fld-meta .chg {
+        display: none;
+        color: #92400E;
+        background: #FEF3C7;
+        padding: 1px 8px;
+        border-radius: 999px
+    }
+
+    .fld.changed .chg {
+        display: inline-block
+    }
+
+    .fld-count.near {
+        color: #B45309
+    }
+
+    .fld-count.full {
+        color: #B91C1C
+    }
+
+    .inp {
+        display: block;
+        width: 100%;
+        padding: 10px 13px;
+        border: 1.5px solid #CBD5E1;
+        border-radius: 11px;
+        background: #fff;
         color: var(--ink);
+        font-size: .95rem;
+        line-height: 1.5;
+        resize: none;
+        overflow: hidden;
+        transition: border-color .15s, box-shadow .15s
+    }
+
+    .inp::placeholder {
+        color: #94A3B8
+    }
+
+    .inp:hover {
+        border-color: #94A3B8
+    }
+
+    .inp:focus {
+        outline: 0;
+        border-color: var(--b500);
+        box-shadow: 0 0 0 4px rgba(21, 101, 192, .14)
+    }
+
+    .inp.is-invalid {
+        border-color: #DC2626;
+        background: #FEF2F2
+    }
+
+    .inp.is-invalid:focus {
+        box-shadow: 0 0 0 4px rgba(220, 38, 38, .14)
+    }
+
+    .fld-err {
+        display: none;
+        margin-top: 6px;
+        font-size: .8rem;
+        font-weight: 600;
+        color: #B91C1C
+    }
+
+    .inp.is-invalid~.fld-err {
+        display: block
+    }
+
+    .pair {
+        container-type: inline-size;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 16px 0;
+        margin-bottom: 16px;
+        background: #F8FAFC
+    }
+
+    .pair-t {
+        font-size: .72rem;
         font-weight: 700;
-        font-size: .92rem;
-        border-radius: 10px;
-        padding: 11px 20px
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--mut);
+        margin-bottom: 12px
     }
 
-    .lock {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: .78rem;
-        color: #BFDBFE
-    }
-
-    .stats {
+    .pair-g {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        margin: 0 calc(-1 * clamp(20px, 6cqi, 52px)) 0 calc(-1 * clamp(26px, 7cqi, 62px));
-        border-top: 1px solid rgba(255, 255, 255, .2)
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0 14px
     }
 
-    .stat {
-        padding: 26px clamp(14px, 4cqi, 32px) 28px clamp(16px, 4cqi, 32px)
-    }
-
-    .stat:first-child {
-        padding-left: clamp(26px, 7cqi, 62px) ;
-    }
-
-    .stat+.stat {
-        border-left: 1px solid rgba(255, 255, 255, .2)
-    }
-
-    .t-val {
-        font-family: 'Bricolage Grotesque', sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.5rem, 5.6cqi, 2.3rem);
-        line-height: 1.1;
-        color: var(--gold-l);
-        letter-spacing: -.02em
-    }
-
-    .t-val::placeholder {
-        color: rgba(251, 191, 36, .4)
-    }
-
-    .t-lbl {
-        font-size: clamp(.8rem, 2.2cqi, .92rem);
-        color: #BFDBFE
-    }
-
-    .stat .ed:first-child {
-        margin-bottom: 2px
-    }
-
-    .stat .ed-in {
-        width: 100%
-    }
-
-    @container frm (max-width: 520px) {
-        .stats {
-            grid-template-columns: 1fr
-        }
-
-        .stat+.stat {
-            border-left: 0;
-            border-top: 1px solid rgba(255, 255, 255, .2)
-        }
-
-        .stat,
-        .stat:first-child {
-            padding: 20px 20px 20px 26px
+    @container (min-width: 400px) {
+        .pair-g {
+            grid-template-columns: minmax(0, 2fr) minmax(0, 3fr)
         }
     }
 
-    /* ---------- Bar aksi ---------- */
-    .bar {
+    /* ---------- Bar aksi menyatu dengan panel ---------- */
+    .act {
         position: sticky;
-        bottom: 14px;
-        z-index: 5;
-        margin-top: 22px;
+        bottom: 0;
+        z-index: 4;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 12px 16px;
-        padding: 12px 14px 12px 20px;
-        background: rgba(255, 255, 255, .95);
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        box-shadow: 0 16px 40px -12px rgba(10, 47, 108, .32)
+        padding: 14px 24px;
+        background: #fff;
+        border-top: 1px solid var(--line);
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0 -10px 22px -16px rgba(10, 47, 108, .35)
     }
 
-    .bar-state {
-        flex: 1 1 220px;
+    .act-state {
+        flex: 1 1 180px;
         display: flex;
         align-items: center;
         gap: 9px;
-        font-size: .9rem;
+        font-size: .88rem;
         font-weight: 600;
         color: var(--sub)
     }
 
-    .bar-state .dot {
+    .act-state .dot {
         width: 9px;
         height: 9px;
         flex: 0 0 9px;
@@ -454,15 +409,15 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
         background: #22C55E
     }
 
-    .bar-state.dirty {
+    .act-state.dirty {
         color: #92400E
     }
 
-    .bar-state.dirty .dot {
+    .act-state.dirty .dot {
         background: var(--gold)
     }
 
-    .bar-btns {
+    .act-btns {
         display: flex;
         flex-wrap: wrap;
         gap: 10px
@@ -473,12 +428,12 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
         align-items: center;
         justify-content: center;
         gap: 8px;
-        min-height: 46px;
-        padding: 0 22px;
+        min-height: 44px;
+        padding: 0 20px;
         border-radius: 12px;
         border: 2px solid transparent;
         font-weight: 700;
-        font-size: .95rem;
+        font-size: .92rem;
         cursor: pointer;
         transition: background .15s, color .15s, border-color .15s, box-shadow .15s
     }
@@ -489,13 +444,13 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
     }
 
     .btn-x.save {
-        background: linear-gradient(90deg, var(--gold), var(--gold-l));
-        color: var(--b900);
-        box-shadow: 0 6px 16px -4px rgba(245, 158, 11, .6)
+        background: var(--gold);
+        color: var(--b900)
     }
 
     .btn-x.save:hover {
-        box-shadow: 0 9px 22px -4px rgba(245, 158, 11, .85)
+        background: var(--gold-l);
+        box-shadow: 0 8px 18px -6px rgba(245, 158, 11, .7)
     }
 
     .btn-x.save:disabled {
@@ -526,12 +481,228 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
         color: #B91C1C
     }
 
-    @media (max-width:575.98px) {
-        .bar {
-            padding: 12px
+    .bw-kbd {
+        text-align: center;
+        font-size: .78rem;
+        color: var(--mut);
+        margin-top: 10px
+    }
+
+    /* ---------- Pratinjau ---------- */
+    .prev {
+        min-width: 0
+    }
+
+    @media (min-width: 992px) {
+        .prev {
+            position: sticky;
+            top: var(--bw-top)
+        }
+    }
+
+    .prev-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px 16px;
+        margin-bottom: 12px
+    }
+
+    .prev-t {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-size: .82rem;
+        font-weight: 700;
+        color: var(--b900)
+    }
+
+    .prev-t .live {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold)
+    }
+
+    .seg {
+        display: inline-flex;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 3px
+    }
+
+    .seg button {
+        border: 0;
+        background: transparent;
+        color: var(--sub);
+        font-weight: 600;
+        font-size: .82rem;
+        padding: 6px 13px;
+        border-radius: 9px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer
+    }
+
+    .seg button.on {
+        background: var(--b700);
+        color: #fff
+    }
+
+    .seg button:focus-visible {
+        outline: 3px solid rgba(21, 101, 192, .4);
+        outline-offset: 1px
+    }
+
+    .canvas {
+        background: #E8EEF8;
+        border-radius: 20px;
+        padding: clamp(14px, 2.6vw, 28px)
+    }
+
+    .frame {
+        container-type: inline-size;
+        max-width: 100%;
+        margin: 0 auto;
+        transition: max-width .3s ease
+    }
+
+    .frame.mobile {
+        max-width: 340px
+    }
+
+    .hero {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        padding: clamp(28px, 8cqi, 48px) clamp(20px, 6cqi, 44px) clamp(22px, 5cqi, 32px) clamp(26px, 7cqi, 52px);
+        border-radius: 18px;
+        background: linear-gradient(150deg, var(--b700), var(--b900))
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 7px;
+        background: var(--gold-l)
+    }
+
+    .h-title {
+        margin: 0 0 14px;
+        font-weight: 800;
+        font-size: clamp(1.45rem, 7cqi, 2.6rem);
+        line-height: 1.12;
+        letter-spacing: -.025em;
+        overflow-wrap: anywhere
+    }
+
+    .h-desc {
+        margin: 0;
+        font-size: clamp(.88rem, 2.5cqi, 1rem);
+        line-height: 1.7;
+        color: #DBEAFE;
+        white-space: pre-line;
+        overflow-wrap: anywhere
+    }
+
+    .h-title:empty::before,
+    .h-desc:empty::before {
+        content: attr(data-ph);
+        opacity: .4
+    }
+
+    .h-cta {
+        margin: 24px 0 clamp(24px, 6cqi, 36px)
+    }
+
+    .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--ink);
+        font-weight: 700;
+        font-size: .9rem;
+        border-radius: 10px;
+        padding: 11px 20px
+    }
+
+    .h-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid rgba(255, 255, 255, .22);
+        padding-top: 22px
+    }
+
+    .h-stat {
+        min-width: 0;
+        padding-right: 16px
+    }
+
+    .h-stat+.h-stat {
+        border-left: 1px solid rgba(255, 255, 255, .22);
+        padding-left: clamp(16px, 4cqi, 28px)
+    }
+
+    .h-val {
+        font-weight: 800;
+        font-size: clamp(1.35rem, 5.2cqi, 2.1rem);
+        line-height: 1.1;
+        letter-spacing: -.02em;
+        color: var(--gold-l);
+        overflow-wrap: anywhere
+    }
+
+    .h-lbl {
+        margin-top: 4px;
+        font-size: clamp(.78rem, 2.1cqi, .9rem);
+        color: #BFDBFE;
+        overflow-wrap: anywhere
+    }
+
+    .h-val:empty::before,
+    .h-lbl:empty::before {
+        content: attr(data-ph);
+        opacity: .45
+    }
+
+    @container (max-width: 420px) {
+        .h-stats {
+            grid-template-columns: 1fr;
+            gap: 18px
         }
 
-        .bar-btns {
+        .h-stat+.h-stat {
+            border-left: 0;
+            padding-left: 0;
+            border-top: 1px solid rgba(255, 255, 255, .22);
+            padding-top: 18px
+        }
+    }
+
+    .prev-note {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 12px 4px 0;
+        font-size: .8rem;
+        color: var(--mut)
+    }
+
+    @media (max-width: 575.98px) {
+        .sec {
+            padding: 20px 16px 4px
+        }
+
+        .act {
+            padding: 12px 16px
+        }
+
+        .act-btns {
             width: 100%
         }
 
@@ -551,37 +722,32 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
             flex: 1;
             justify-content: center
         }
-    }
 
-    .cv-kbd {
-        text-align: center;
-        font-size: .78rem;
-        color: var(--mut);
-        margin-top: 10px
-    }
-
-    @media (max-width:575.98px) {
-        .cv-kbd {
+        .bw-kbd {
             display: none
         }
     }
 
-    @media (prefers-reduced-motion:reduce) {
+    @media (prefers-reduced-motion: reduce) {
 
-        .cv *,
-        .cv *::before {
+        .bw *,
+        .bw *::before {
             transition: none !important
         }
     }
 </style>
 
-<div class="cv">
+<div class="bw">
 
-    <header class="cv-head">
-        <h1>Beranda</h1>
-        <div class="cv-pills">
-            <?php if ($tgl): ?><span class="cv-pill"><i class="bi bi-clock-history"></i>Terakhir diperbarui <?= html_escape($tgl); ?></span><?php endif; ?>
-            <span class="cv-pill warn" id="chipDirty" role="status" aria-live="polite"><i class="bi bi-pencil-fill"></i>Belum disimpan</span>
+    <header class="bw-head">
+        <div>
+            <span class="bw-eyebrow">Website</span>
+            <h1>Beranda Website</h1>
+            <p>Atur judul, deskripsi, dan dua angka pencapaian yang tampil di banner halaman depan PT Citra Abadi Bermartabat. Pratinjau di sebelah kanan ikut berubah saat Anda mengetik.</p>
+        </div>
+        <div class="bw-pills">
+            <?php if ($tgl): ?><span class="bw-pill"><i class="bi bi-clock-history"></i>Terakhir diperbarui <?= html_escape($tgl); ?></span><?php endif; ?>
+            <span class="bw-pill warn" id="chipDirty" role="status" aria-live="polite"><i class="bi bi-pencil-fill"></i>Belum disimpan</span>
         </div>
     </header>
 
@@ -605,78 +771,135 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
 
     <?= form_open('admin/beranda/simpan', ['id' => 'formBeranda', 'novalidate' => 'novalidate']); ?>
 
-    <div class="stage">
-        <div class="stage-bar">
-            <span class="stage-hint"><i class="bi bi-cursor-fill"></i>Klik langsung pada tulisan di banner untuk mengubahnya</span>
-            <div class="seg" role="group" aria-label="Ukuran layar">
-                <button type="button" class="on" data-pv="desktop"><i class="bi bi-display"></i>Komputer</button>
-                <button type="button" data-pv="mobile"><i class="bi bi-phone"></i>HP</button>
-            </div>
-        </div>
+    <div class="bw-grid">
 
-        <div class="frame" id="frame">
-            <div class="hero">
+        <!-- ===== Kiri: panel isian ===== -->
+        <div>
+            <div class="panel">
 
-                <div class="ed" data-tag="Judul">
-                    <textarea name="judul_banner" id="judul_banner" class="ed-in t-title" rows="1" maxlength="180"
-                        placeholder="Tulis judul banner di sini" aria-label="Judul banner" data-label="Judul banner" data-single="1"
-                        required><?= set_value('judul_banner', $row->judul_banner ?? ''); ?></textarea>
-                    <span class="ed-count"></span>
-                    <div class="ed-err"></div>
-                </div>
+                <section class="sec">
+                    <div class="sec-h">
+                        <span class="sec-n">01</span>
+                        <div>
+                            <h2>Banner utama</h2>
+                            <p>Kalimat pertama yang dibaca pengunjung website.</p>
+                        </div>
+                    </div>
 
-                <div class="ed" data-tag="Deskripsi">
-                    <textarea name="deskripsi_banner" id="deskripsi_banner" class="ed-in t-desc" rows="3" maxlength="600"
-                        placeholder="Tulis penjelasan singkat di bawah judul" aria-label="Deskripsi banner" data-label="Deskripsi banner"
-                        required><?= set_value('deskripsi_banner', $row->deskripsi_banner ?? ''); ?></textarea>
-                    <span class="ed-count"></span>
-                    <div class="ed-err"></div>
-                </div>
+                    <div class="fld">
+                        <div class="fld-top">
+                            <label for="judul_banner">Judul banner</label>
+                            <span class="fld-meta"><span class="chg">Diubah</span><span class="fld-count"></span></span>
+                        </div>
+                        <textarea name="judul_banner" id="judul_banner" class="inp" rows="2" maxlength="180"
+                            placeholder="Contoh: Pabrik &amp; Distribusi Beras Modern"
+                            data-label="Judul banner" data-single="1" data-target="pvJudul"
+                            data-awal="<?= html_escape($v('judul_banner')); ?>" required><?= set_value('judul_banner', $v('judul_banner')); ?></textarea>
+                        <div class="fld-err"></div>
+                    </div>
 
-                <div class="cta-row">
-                    <span class="cta"><i class="bi bi-bag-check-fill"></i>Belanja Produk Beras</span>
-                    <span class="lock"><i class="bi bi-lock-fill"></i>Tombol ini diatur di menu Header</span>
-                </div>
+                    <div class="fld">
+                        <div class="fld-top">
+                            <label for="deskripsi_banner">Deskripsi banner</label>
+                            <span class="fld-meta"><span class="chg">Diubah</span><span class="fld-count"></span></span>
+                        </div>
+                        <textarea name="deskripsi_banner" id="deskripsi_banner" class="inp" rows="4" maxlength="600"
+                            placeholder="Penjelasan singkat di bawah judul"
+                            data-label="Deskripsi banner" data-target="pvDesk"
+                            data-awal="<?= html_escape($v('deskripsi_banner')); ?>" required><?= set_value('deskripsi_banner', $v('deskripsi_banner')); ?></textarea>
+                        <div class="fld-err"></div>
+                    </div>
+                </section>
 
-                <div class="stats">
-                    <?php for ($i = 1; $i <= 2; $i++): ?>
-                        <div class="stat">
-                            <div class="ed" data-tag="Angka <?= $i ?>">
-                                <input type="text" name="statistik_<?= $i ?>_nilai" id="statistik_<?= $i ?>_nilai"
-                                    class="ed-in t-val" maxlength="40" placeholder="150+ Ton"
-                                    aria-label="Nilai angka <?= $i ?>" data-label="Nilai angka <?= $i ?>"
-                                    value="<?= set_value('statistik_' . $i . '_nilai', $row->{'statistik_' . $i . '_nilai'} ?? ''); ?>"
-                                    required>
-                                <span class="ed-count"></span>
-                                <div class="ed-err"></div>
-                            </div>
-                            <div class="ed" data-tag="Keterangan angka <?= $i ?>">
-                                <input type="text" name="statistik_<?= $i ?>_label" id="statistik_<?= $i ?>_label"
-                                    class="ed-in t-lbl" maxlength="100" placeholder="Kapasitas giling per hari"
-                                    aria-label="Keterangan angka <?= $i ?>" data-label="Keterangan angka <?= $i ?>"
-                                    value="<?= set_value('statistik_' . $i . '_label', $row->{'statistik_' . $i . '_label'} ?? ''); ?>"
-                                    required>
-                                <span class="ed-count"></span>
-                                <div class="ed-err"></div>
+                <section class="sec">
+                    <div class="sec-h">
+                        <span class="sec-n">02</span>
+                        <div>
+                            <h2>Angka pencapaian</h2>
+                            <p>Dua angka yang tampil di bagian bawah banner.</p>
+                        </div>
+                    </div>
+
+                    <?php for ($i = 1; $i <= 2; $i++):
+                        $kn = 'statistik_' . $i . '_nilai';
+                        $kl = 'statistik_' . $i . '_label';
+                    ?>
+                        <div class="pair">
+                            <div class="pair-t">Angka <?= $i; ?></div>
+                            <div class="pair-g">
+                                <div class="fld">
+                                    <div class="fld-top">
+                                        <label for="<?= $kn; ?>">Nilai</label>
+                                        <span class="fld-meta"><span class="chg">Diubah</span><span class="fld-count"></span></span>
+                                    </div>
+                                    <input type="text" name="<?= $kn; ?>" id="<?= $kn; ?>" class="inp" maxlength="40"
+                                        placeholder="150+ Ton" data-label="Nilai angka <?= $i; ?>" data-single="1"
+                                        data-target="pvN<?= $i; ?>" data-awal="<?= html_escape($v($kn)); ?>"
+                                        value="<?= set_value($kn, $v($kn)); ?>" required>
+                                    <div class="fld-err"></div>
+                                </div>
+                                <div class="fld">
+                                    <div class="fld-top">
+                                        <label for="<?= $kl; ?>">Keterangan</label>
+                                        <span class="fld-meta"><span class="chg">Diubah</span><span class="fld-count"></span></span>
+                                    </div>
+                                    <input type="text" name="<?= $kl; ?>" id="<?= $kl; ?>" class="inp" maxlength="100"
+                                        placeholder="Kapasitas Produksi" data-label="Keterangan angka <?= $i; ?>" data-single="1"
+                                        data-target="pvL<?= $i; ?>" data-awal="<?= html_escape($v($kl)); ?>"
+                                        value="<?= set_value($kl, $v($kl)); ?>" required>
+                                    <div class="fld-err"></div>
+                                </div>
                             </div>
                         </div>
                     <?php endfor; ?>
+                </section>
+
+                <div class="act">
+                    <div class="act-state" id="barState" role="status" aria-live="polite">
+                        <span class="dot"></span><span id="barTxt">Belum ada perubahan</span>
+                    </div>
+                    <div class="act-btns">
+                        <button type="button" class="btn-x ghost" id="btnReset" disabled><i class="bi bi-arrow-counterclockwise"></i><span>Batalkan perubahan</span></button>
+                        <button type="submit" class="btn-x save" id="btnSimpan"><i class="bi bi-check2-circle"></i><span>Simpan perubahan</span></button>
+                    </div>
                 </div>
-
             </div>
+            <div class="bw-kbd">Pintasan: <kbd>Ctrl</kbd> + <kbd>S</kbd> untuk menyimpan</div>
         </div>
-    </div>
 
-    <div class="bar">
-        <div class="bar-state" id="barState" role="status" aria-live="polite">
-            <span class="dot"></span><span id="barTxt">Belum ada perubahan</span>
-        </div>
-        <div class="bar-btns">
-            <button type="button" class="btn-x ghost" id="btnReset" disabled><i class="bi bi-arrow-counterclockwise"></i><span>Batalkan perubahan</span></button>
-            <button type="submit" class="btn-x save" id="btnSimpan"><i class="bi bi-check2-circle"></i><span>Simpan perubahan</span></button>
-        </div>
+        <!-- ===== Kanan: pratinjau langsung ===== -->
+        <aside class="prev" aria-label="Pratinjau banner">
+            <div class="prev-bar">
+                <span class="prev-t"><span class="live"></span>Pratinjau langsung</span>
+                <div class="seg" role="group" aria-label="Ukuran layar">
+                    <button type="button" class="on" data-dev="desktop"><i class="bi bi-display"></i>Komputer</button>
+                    <button type="button" data-dev="mobile"><i class="bi bi-phone"></i>HP</button>
+                </div>
+            </div>
+
+            <div class="canvas">
+                <div class="frame" id="frame">
+                    <div class="hero">
+                        <h2 class="h-title" id="pvJudul" data-ph="Judul banner"></h2>
+                        <p class="h-desc" id="pvDesk" data-ph="Deskripsi banner"></p>
+                        <div class="h-cta"><span class="cta"><i class="bi bi-bag-check-fill"></i>Belanja Produk Beras</span></div>
+                        <div class="h-stats">
+                            <div class="h-stat">
+                                <div class="h-val" id="pvN1" data-ph="150+ Ton"></div>
+                                <div class="h-lbl" id="pvL1" data-ph="Keterangan angka 1"></div>
+                            </div>
+                            <div class="h-stat">
+                                <div class="h-val" id="pvN2" data-ph="121"></div>
+                                <div class="h-lbl" id="pvL2" data-ph="Keterangan angka 2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="prev-note"><i class="bi bi-lock-fill"></i>Tombol "Belanja Produk Beras" diatur di menu Header.</div>
+        </aside>
+
     </div>
-    <div class="cv-kbd">Pintasan: <kbd>Ctrl</kbd> + <kbd>S</kbd> untuk menyimpan</div>
 
     <?= form_close(); ?>
 </div>
@@ -689,32 +912,36 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
         var chipDirty = document.getElementById('chipDirty');
         var barState = document.getElementById('barState');
         var barTxt = document.getElementById('barTxt');
-        var fields = Array.prototype.slice.call(form.querySelectorAll('.ed-in'));
+        var fields = Array.prototype.slice.call(form.querySelectorAll('.inp'));
         var submitting = false;
 
+        // Nilai awal = data tersimpan di database (bukan isian yang gagal validasi)
         var awal = {};
-        fields.forEach(function (f) { awal[f.name] = f.value; });
+        fields.forEach(function (f) { awal[f.name] = f.getAttribute('data-awal') || ''; });
 
         function bersih(f) {
-            // Judul hanya satu baris: buang baris baru
             if (f.dataset.single) { f.value = f.value.replace(/[\r\n]+/g, ' '); }
         }
         function tinggi(f) {
             if (f.tagName !== 'TEXTAREA') { return; }
             f.style.height = 'auto';
-            f.style.height = f.scrollHeight + 'px';
+            f.style.height = f.scrollHeight + 2 + 'px';
         }
         function hitung(f) {
-            var c = f.parentNode.querySelector('.ed-count');
+            var c = f.closest('.fld').querySelector('.fld-count');
             var max = parseInt(f.getAttribute('maxlength'), 10), n = f.value.length;
             c.textContent = n + '/' + max;
             c.classList.toggle('near', n >= max * 0.9 && n < max);
             c.classList.toggle('full', n >= max);
         }
+        function pratinjau(f) {
+            var el = document.getElementById(f.getAttribute('data-target'));
+            if (el) { el.textContent = f.value.trim(); }
+        }
         function validasi(f, tampil) {
             var ok = f.value.trim() !== '';
             f.classList.toggle('is-invalid', tampil && !ok);
-            var er = f.parentNode.querySelector('.ed-err');
+            var er = f.closest('.fld').querySelector('.fld-err');
             if (er) { er.textContent = ok ? '' : ((f.getAttribute('data-label') || 'Kolom ini') + ' wajib diisi.'); }
             return ok;
         }
@@ -724,7 +951,7 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
         function perbarui() {
             var n = jumlahUbah();
             fields.forEach(function (f) {
-                f.parentNode.classList.toggle('changed', f.value !== awal[f.name]);
+                f.closest('.fld').classList.toggle('changed', f.value !== awal[f.name]);
             });
             chipDirty.style.display = n ? 'inline-flex' : 'none';
             btnReset.disabled = !n;
@@ -733,27 +960,25 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
         }
 
         fields.forEach(function (f) {
-            bersih(f); tinggi(f); hitung(f);
+            bersih(f); tinggi(f); hitung(f); pratinjau(f);
             f.addEventListener('input', function () {
-                bersih(f); tinggi(f); hitung(f); perbarui();
+                bersih(f); tinggi(f); hitung(f); pratinjau(f); perbarui();
                 if (f.classList.contains('is-invalid')) { validasi(f, true); }
             });
             f.addEventListener('keydown', function (e) {
-                // Enter di judul/teks pendek tidak membuat baris baru
                 if (e.key === 'Enter' && f.dataset.single) { e.preventDefault(); }
             });
             f.addEventListener('blur', function () {
                 f.value = f.value.trim();
-                tinggi(f); hitung(f); perbarui();
+                tinggi(f); hitung(f); pratinjau(f); perbarui();
                 if (f.value !== awal[f.name] || f.classList.contains('is-invalid')) { validasi(f, true); }
             });
         });
         perbarui();
 
-        // Tinggi ulang saat lebar berubah (komputer/HP/ubah ukuran jendela)
         window.addEventListener('resize', function () { fields.forEach(tinggi); });
 
-        /* Batalkan perubahan: klik dua kali agar tidak terhapus tanpa sengaja */
+        // Batalkan perubahan: klik dua kali agar tidak terhapus tanpa sengaja
         var resetTimer = null, resetLabel = btnReset.querySelector('span');
         function resetNormal() {
             btnReset.classList.remove('confirm');
@@ -771,7 +996,9 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
             fields.forEach(function (f) {
                 f.value = awal[f.name];
                 f.classList.remove('is-invalid');
-                tinggi(f); hitung(f);
+                var er = f.closest('.fld').querySelector('.fld-err');
+                if (er) { er.textContent = ''; }
+                tinggi(f); hitung(f); pratinjau(f);
             });
             perbarui();
         });
@@ -780,7 +1007,7 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
             if (jumlahUbah() && !submitting) { e.preventDefault(); e.returnValue = ''; }
         });
 
-        /* Simpan */
+        // Simpan
         var teksAwal = btnSimpan.innerHTML;
         form.addEventListener('submit', function (e) {
             var salah = null;
@@ -802,18 +1029,17 @@ $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at
             submitting = false; btnSimpan.disabled = false; btnSimpan.innerHTML = teksAwal;
         });
 
-        /* Komputer / HP */
+        // Komputer / HP
         var frame = document.getElementById('frame');
-        document.querySelectorAll('[data-pv]').forEach(function (b) {
+        document.querySelectorAll('[data-dev]').forEach(function (b) {
             b.addEventListener('click', function () {
-                document.querySelectorAll('[data-pv]').forEach(function (x) { x.classList.remove('on'); });
+                document.querySelectorAll('[data-dev]').forEach(function (x) { x.classList.remove('on'); });
                 b.classList.add('on');
-                frame.classList.toggle('mobile', b.dataset.pv === 'mobile');
-                setTimeout(function () { fields.forEach(tinggi); }, 320);
+                frame.classList.toggle('mobile', b.dataset.dev === 'mobile');
             });
         });
 
-        /* Ctrl/Cmd + S */
+        // Ctrl/Cmd + S
         document.addEventListener('keydown', function (e) {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
                 e.preventDefault();

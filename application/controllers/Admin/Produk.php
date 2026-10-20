@@ -10,7 +10,7 @@ class Produk extends CI_Controller
         if ($this->session->userdata('islog') == FALSE) {
             redirect('beranda');
         }
-        if ($this->session->userdata('role') == 'admin') {
+        if ($this->session->userdata('role') != 'admin') {
             redirect('beranda');
         }
     }
