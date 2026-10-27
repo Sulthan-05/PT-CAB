@@ -534,36 +534,36 @@
 
 <body>
 
-	<?php
-	$current_url = strtolower(trim(uri_string(), '/'));
+<?php
+$current_url = strtolower(trim(uri_string(), '/'));
 
-	$is_tentang = strpos($current_url, 'admin/tentang') === 0;
-	$is_website = strpos($current_url, 'admin/beranda') === 0
-		|| strpos($current_url, 'admin/header') === 0
-		|| strpos($current_url, 'admin/footer') === 0;
-	$is_produk = strpos($current_url, 'admin/kategori') === 0
-		|| strpos($current_url, 'admin/produk') === 0;
-	?>
+$is_tentang = strpos($current_url, 'admin/tentang') === 0;
+$is_website = strpos($current_url, 'admin/beranda') === 0
+    || strpos($current_url, 'admin/header') === 0
+    || strpos($current_url, 'admin/foot') === 0;
+$is_produk = strpos($current_url, 'admin/kategori') === 0
+    || strpos($current_url, 'admin/produk') === 0;
+?>
 
-	<div class="overlay" id="overlay"></div>
+<div class="overlay" id="overlay"></div>
 
-	<aside class="sidebar" id="sidebar">
-		<div>
-			<div class="sidebar-header">
-				<div class="logo-box">CAB</div>
-				<div class="brand-text">
-					<h2>Citra Abadi<br>Bermartabat</h2>
-					<p>ADMIN</p>
-				</div>
-			</div>
+<aside class="sidebar" id="sidebar">
+    <div>
+        <div class="sidebar-header">
+            <div class="logo-box">CAB</div>
+            <div class="brand-text">
+                <h2>Citra Abadi<br>Bermartabat</h2>
+                <p>ADMIN</p>
+            </div>
+        </div>
 
-			<ul class="sidebar-menu">
-				<li>
-					<a href="<?= base_url('home') ?>"
-						class="<?= in_array($current_url, ['home', 'admin/dashboard']) ? 'active' : '' ?>">
-						<span>Dashboard</span>
-					</a>
-				</li>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="<?= base_url('home') ?>"
+                   class="<?= in_array($current_url, ['home', 'admin/dashboard']) ? 'active' : '' ?>">
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
 				<li class="menu-dropdown <?= $is_website ? 'open' : '' ?>">
 					<a href="javascript:void(0)" class="dropdown-toggle <?= $is_website ? 'active' : '' ?>">
@@ -577,71 +577,61 @@
 						<li><a href="<?= base_url('admin/header') ?>"
 								class="<?= strpos($current_url, 'admin/header') === 0 ? 'active' : '' ?>">Header</a>
 						</li>
-						<li><a href="<?= base_url('admin/footer') ?>"
-								class="<?= strpos($current_url, 'admin/footer') === 0 ? 'active' : '' ?>">Footer</a>
+						<li><a href="<?= base_url('admin/foot') ?>"
+							class="<?= strpos($current_url, 'admin/foot') === 0 ? 'active' : '' ?>">Footer</a>
 						</li>
 					</ul>
 				</li>
 
-				<li class="menu-dropdown <?= $is_tentang ? 'open' : '' ?>">
-					<a href="javascript:void(0)" class="dropdown-toggle <?= $is_tentang ? 'active' : '' ?>">
-						<span>Tentang Kami</span>
-						<i class="fa-solid fa-chevron-down dropdown-arrow"></i>
-					</a>
-					<ul class="submenu">
-						<li><a href="<?= base_url('admin/tentang') ?>"
-								class="<?= $current_url === 'admin/tentang' || strpos($current_url, 'admin/tentang/index') === 0 ? 'active' : '' ?>">Tentang
-								Kami</a></li>
-						<li><a href="<?= base_url('admin/tentang/profil') ?>"
-								class="<?= strpos($current_url, 'admin/tentang/profil') === 0 ? 'active' : '' ?>">Profil
-								Perusahaan</a></li>
-						<li><a href="<?= base_url('admin/tentang/visi_misi') ?>"
-								class="<?= strpos($current_url, 'admin/tentang/visi_misi') === 0 ? 'active' : '' ?>">Visi
-								&amp; Misi</a></li>
-					</ul>
-				</li>
+            <li class="menu-dropdown <?= $is_tentang ? 'open' : '' ?>">
+                <a href="javascript:void(0)" class="dropdown-toggle <?= $is_tentang ? 'active' : '' ?>">
+                    <span>Tentang Kami</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="<?= base_url('admin/tentang') ?>" class="<?= $current_url === 'admin/tentang' || strpos($current_url, 'admin/tentang/index') === 0 ? 'active' : '' ?>">Tentang Kami</a></li>
+                    <li><a href="<?= base_url('admin/tentang/profil') ?>" class="<?= strpos($current_url, 'admin/tentang/profil') === 0 ? 'active' : '' ?>">Profil Perusahaan</a></li>
+                    <li><a href="<?= base_url('admin/tentang/visi_misi') ?>" class="<?= strpos($current_url, 'admin/tentang/visi_misi') === 0 ? 'active' : '' ?>">Visi &amp; Misi</a></li>
+                </ul>
+            </li>
 
-				<li class="menu-dropdown <?= $is_produk ? 'open' : '' ?>">
-					<a href="javascript:void(0)" class="dropdown-toggle <?= $is_produk ? 'active' : '' ?>">
-						<span>Produk</span>
-						<i class="fa-solid fa-chevron-down dropdown-arrow"></i>
-					</a>
-					<ul class="submenu">
-						<li><a href="<?= base_url('admin/Kategori') ?>"
-								class="<?= strpos($current_url, 'admin/kategori') === 0 ? 'active' : '' ?>">Kategori
-								Produk</a></li>
-						<li><a href="<?= base_url('admin/produk') ?>"
-								class="<?= strpos($current_url, 'admin/produk') === 0 ? 'active' : '' ?>">Produk</a>
-						</li>
-					</ul>
-				</li>
+            <li class="menu-dropdown <?= $is_produk ? 'open' : '' ?>">
+                <a href="javascript:void(0)" class="dropdown-toggle <?= $is_produk ? 'active' : '' ?>">
+                    <span>Produk</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="<?= base_url('admin/Kategori') ?>" class="<?= strpos($current_url, 'admin/kategori') === 0 ? 'active' : '' ?>">Kategori Produk</a></li>
+                    <li><a href="<?= base_url('admin/produk') ?>" class="<?= strpos($current_url, 'admin/produk') === 0 ? 'active' : '' ?>">Produk</a></li>
+                </ul>
+            </li>
 
-				<li><a href="#"><span>Informasi</span></a></li>
-				<li><a href="#"><span>Jajaran Anggota Struktur</span></a></li>
-				<li><a href="#"><span>Fasilitas</span></a></li>
-				<li><a href="#"><span>Kontak</span></a></li>
-				<li><a href="#"><span>Story</span></a></li>
-			</ul>
-		</div>
+            <li><a href="#"><span>Informasi</span></a></li>
+            <li><a href="#"><span>Jajaran Anggota Struktur</span></a></li>
+            <li><a href="#"><span>Fasilitas</span></a></li>
+            <li><a href="#"><span>Kontak</span></a></li>
+            <li><a href="#"><span>Story</span></a></li>
+        </ul>
+    </div>
 
-		<div class="sidebar-footer">
-			<a href="<?= base_url('auth/logout') ?>">
-				<span><i class="fa-solid fa-right-from-bracket"></i>&nbsp; LOGOUT</span>
-				<span class="dot"></span>
-			</a>
-		</div>
-	</aside>
+    <div class="sidebar-footer">
+        <a href="<?= base_url('auth/logout') ?>">
+            <span><i class="fa-solid fa-right-from-bracket"></i>&nbsp; LOGOUT</span>
+            <span class="dot"></span>
+        </a>
+    </div>
+</aside>
 
-	<main class="main-content">
-		<header class="top-bar">
-			<div style="display:flex;align-items:center;width:100%;gap:15px">
-				<button class="menu-toggle" id="menuToggle" type="button">
-					<i class="fa-solid fa-bars"></i>
-				</button>
-				<div class="search-container">
-					<i class="fa-solid fa-magnifying-glass"></i>
-					<input type="text" placeholder="Cari modul, SKU, dokumen...">
-				</div>
-			</div>
-			<button class="btn-profil" type="button">Profil</button>
-		</header>
+<main class="main-content">
+    <header class="top-bar">
+        <div style="display:flex;align-items:center;width:100%;gap:15px">
+            <button class="menu-toggle" id="menuToggle" type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Cari modul, SKU, dokumen...">
+            </div>
+        </div>
+        <button class="btn-profil" type="button">Profil</button>
+    </header>
