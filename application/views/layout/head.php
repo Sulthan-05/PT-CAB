@@ -100,7 +100,7 @@ $current_url = strtolower(trim(uri_string(), '/'));
 $is_tentang = strpos($current_url, 'admin/tentang') === 0;
 $is_website = strpos($current_url, 'admin/beranda') === 0
     || strpos($current_url, 'admin/header') === 0
-    || strpos($current_url, 'admin/footer') === 0;
+    || strpos($current_url, 'admin/foot') === 0;
 $is_produk = strpos($current_url, 'admin/kategori') === 0
     || strpos($current_url, 'admin/produk') === 0;
 ?>
@@ -125,17 +125,23 @@ $is_produk = strpos($current_url, 'admin/kategori') === 0
                 </a>
             </li>
 
-            <li class="menu-dropdown <?= $is_website ? 'open' : '' ?>">
-                <a href="javascript:void(0)" class="dropdown-toggle <?= $is_website ? 'active' : '' ?>">
-                    <span>Website</span>
-                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="<?= base_url('admin/beranda') ?>" class="<?= strpos($current_url, 'admin/beranda') === 0 ? 'active' : '' ?>">Beranda</a></li>
-                    <li><a href="<?= base_url('admin/header') ?>" class="<?= strpos($current_url, 'admin/header') === 0 ? 'active' : '' ?>">Header</a></li>
-                    <li><a href="<?= base_url('admin/footer') ?>" class="<?= strpos($current_url, 'admin/footer') === 0 ? 'active' : '' ?>">Footer</a></li>
-                </ul>
-            </li>
+				<li class="menu-dropdown <?= $is_website ? 'open' : '' ?>">
+					<a href="javascript:void(0)" class="dropdown-toggle <?= $is_website ? 'active' : '' ?>">
+						<span>Website</span>
+						<i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+					</a>
+					<ul class="submenu">
+						<li><a href="<?= base_url('admin/beranda') ?>"
+								class="<?= strpos($current_url, 'admin/beranda') === 0 ? 'active' : '' ?>">Beranda</a>
+						</li>
+						<li><a href="<?= base_url('admin/header') ?>"
+								class="<?= strpos($current_url, 'admin/header') === 0 ? 'active' : '' ?>">Header</a>
+						</li>
+						<li><a href="<?= base_url('admin/foot') ?>"
+							class="<?= strpos($current_url, 'admin/foot') === 0 ? 'active' : '' ?>">Footer</a>
+						</li>
+					</ul>
+				</li>
 
             <li class="menu-dropdown <?= $is_tentang ? 'open' : '' ?>">
                 <a href="javascript:void(0)" class="dropdown-toggle <?= $is_tentang ? 'active' : '' ?>">
