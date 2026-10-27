@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Footer extends CI_Model {
 
-    private $tabel = 'footer';
+    private $tabel = 'website_footer';
 
     public function get() {
         return $this->db->get($this->tabel)->row();

@@ -7,7 +7,7 @@ class Foot extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_Footer');
 		// Samakan key ini dengan yang diset di controller login
-		if (!$this->session->userdata('login')) {
+		if (!$this->session->userdata('islog')) {
 			redirect('auth/login');
 		}
 	}
@@ -54,6 +54,6 @@ class Foot extends CI_Controller {
         } else {
             $this->session->set_flashdata('gagal', 'Gagal menyimpan data footer.');
         }
-        redirect('admin/footer');
+        redirect('admin/foot');
     }
 }
