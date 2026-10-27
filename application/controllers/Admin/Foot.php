@@ -14,7 +14,7 @@ class Foot extends CI_Controller {
 	}
 
     public function index() {
-        $data['website_footer'] = $this->M_Footer->get();
+        $data['footer'] = $this->M_Footer->get();
         $this->load->view('layout/head');
         $this->load->view('admin/website/footer', $data);
         $this->load->view('layout/foot');
@@ -31,7 +31,7 @@ class Foot extends CI_Controller {
         $this->form_validation->set_rules('copyright',   'Copyright',   'required|max_length[255]');
 
         if ($this->form_validation->run() === FALSE) {
-            $data['website_footer'] = $this->M_Footer->get();
+            $data['footer'] = $this->M_Footer->get();
             $this->load->view('layout/head');
             $this->load->view('admin/website/footer', $data);
             $this->load->view('layout/foot');
