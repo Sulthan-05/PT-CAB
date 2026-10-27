@@ -6,14 +6,15 @@ class Foot extends CI_Controller {
     public function __construct() {
 		parent::__construct();
 		$this->load->model('M_Footer');
+		
 		// Samakan key ini dengan yang diset di controller login
-		if (!$this->session->userdata('login')) {
+		if (!$this->session->userdata('islog')) {
 			redirect('auth/login');
 		}
 	}
 
     public function index() {
-        $data['footer'] = $this->M_Footer->get();
+        $data['website_footer'] = $this->M_Footer->get();
         $this->load->view('layout/head');
         $this->load->view('admin/website/footer', $data);
         $this->load->view('layout/foot');
@@ -30,7 +31,7 @@ class Foot extends CI_Controller {
         $this->form_validation->set_rules('copyright',   'Copyright',   'required|max_length[255]');
 
         if ($this->form_validation->run() === FALSE) {
-            $data['footer'] = $this->M_Footer->get();
+            $data['website_footer'] = $this->M_Footer->get();
             $this->load->view('layout/head');
             $this->load->view('admin/website/footer', $data);
             $this->load->view('layout/foot');

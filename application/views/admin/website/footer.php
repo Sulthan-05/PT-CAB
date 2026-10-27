@@ -1,4 +1,4 @@
-<?php include(APPPATH . 'views/layout/head.php'); ?>
+<!-- <?php include(APPPATH . 'views/layout/head.php'); ?> -->
 <?php
 $row = $footer ?? null;
 $tgl = (!empty($row->updated_at)) ? date('d-m-Y H:i', strtotime($row->updated_at)) : null;
@@ -267,7 +267,7 @@ $v = function ($k) use ($row) {
         </div>
     <?php endif; ?>
 
-    <?= form_open('admin/footer/simpan', ['id' => 'formFooter', 'novalidate' => 'novalidate']) ?>
+    <?= form_open('admin/foot/simpan', ['id' => 'formFooter', 'novalidate' => 'novalidate']) ?>
 
     <div class="bw-grid">
 
