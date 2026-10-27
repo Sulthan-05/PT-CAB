@@ -55,6 +55,6 @@ class Foot extends CI_Controller {
         } else {
             $this->session->set_flashdata('gagal', 'Gagal menyimpan data footer.');
         }
-        redirect('admin/footer');
+        redirect('admin/foot');
     }
 }
