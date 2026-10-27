@@ -52,7 +52,7 @@
 			pointer-events: none;
 			background-color: #0A2F6C;
 			background-image:
-				linear-gradient(180deg, rgba(5,15,40,.50) 0%, rgba(5,15,40,.60) 100%),
+				linear-gradient(180deg, rgba(5, 15, 40, .50) 0%, rgba(5, 15, 40, .60) 100%),
 				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='120' height='120' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cg id='f'%3E%3Cg fill='none' stroke='%2393C5FD' stroke-opacity='.55' stroke-width='1.3'%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(288)'/%3E%3C/g%3E%3Cg fill='%23FBBF24' fill-opacity='.8'%3E%3Ccircle cx='0' cy='-21' r='1.7'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(72)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(144)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(216)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(288)'/%3E%3Ccircle r='4.5'/%3E%3C/g%3E%3Ccircle r='8.5' fill='none' stroke='%23FBBF24' stroke-opacity='.65' stroke-width='1' stroke-dasharray='1.5 3'/%3E%3C/g%3E%3Cg id='l' fill='none' stroke='%2393C5FD' stroke-opacity='.5' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M0,-20 C11,-9 11,9 0,20 C-11,9 -11,-9 0,-20Z'/%3E%3Cpath d='M0,-15 L0,15'/%3E%3Cpath d='M0,-7 L6,-12 M0,1 L7,-4 M0,9 L5,5 M0,-7 L-6,-12 M0,1 L-7,-4 M0,9 L-5,5'/%3E%3C/g%3E%3C/defs%3E%3Cuse xlink:href='%23f' transform='translate(60 60)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 120) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 120) scale(.62)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 30) rotate(-45)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 30) rotate(45)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 90) rotate(-135)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 90) rotate(135)'/%3E%3Cg fill='%2393C5FD' fill-opacity='.45'%3E%3Ccircle cx='60' cy='14' r='1.5'/%3E%3Ccircle cx='60' cy='106' r='1.5'/%3E%3Ccircle cx='14' cy='60' r='1.5'/%3E%3Ccircle cx='106' cy='60' r='1.5'/%3E%3Ccircle cx='52' cy='8' r='1'/%3E%3Ccircle cx='68' cy='8' r='1'/%3E%3Ccircle cx='52' cy='112' r='1'/%3E%3Ccircle cx='68' cy='112' r='1'/%3E%3Ccircle cx='8' cy='52' r='1'/%3E%3Ccircle cx='8' cy='68' r='1'/%3E%3Ccircle cx='112' cy='52' r='1'/%3E%3Ccircle cx='112' cy='68' r='1'/%3E%3C/g%3E%3C/svg%3E"),
 				linear-gradient(135deg, #0D47A1 0%, #0A2F6C 100%);
 			background-size: auto, 120px 120px, auto;
@@ -344,6 +344,46 @@
 			box-shadow: 0 4px 15px rgba(0, 0, 0, .1)
 		}
 
+		.content-area .banner {
+			position: relative;
+			overflow: hidden;
+			padding: clamp(28px, 4vw, 48px) clamp(20px, 3.4vw, 44px);
+			border-radius: 20px;
+			color: #fff;
+			background-color: #0A2F6C;
+			background-image:
+				/* lapisan gelap tipis di kiri agar teks tetap terbaca */
+				linear-gradient(90deg, rgba(10, 47, 108, .85) 0%, rgba(10, 47, 108, .45) 55%, rgba(10, 47, 108, 0) 100%),
+				/* motif batik kawung */
+				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='120' height='120' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cg id='f'%3E%3Cg fill='none' stroke='%2393C5FD' stroke-opacity='.55' stroke-width='1.3'%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(288)'/%3E%3C/g%3E%3Cg fill='%23FBBF24' fill-opacity='.8'%3E%3Ccircle cx='0' cy='-21' r='1.7'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(72)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(144)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(216)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(288)'/%3E%3Ccircle r='4.5'/%3E%3C/g%3E%3Ccircle r='8.5' fill='none' stroke='%23FBBF24' stroke-opacity='.65' stroke-width='1' stroke-dasharray='1.5 3'/%3E%3C/g%3E%3Cg id='l' fill='none' stroke='%2393C5FD' stroke-opacity='.5' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M0,-20 C11,-9 11,9 0,20 C-11,9 -11,-9 0,-20Z'/%3E%3Cpath d='M0,-15 L0,15'/%3E%3Cpath d='M0,-7 L6,-12 M0,1 L7,-4 M0,9 L5,5 M0,-7 L-6,-12 M0,1 L-7,-4 M0,9 L-5,5'/%3E%3C/g%3E%3C/defs%3E%3Cuse xlink:href='%23f' transform='translate(60 60)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 120) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 120) scale(.62)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 30) rotate(-45)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 30) rotate(45)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 90) rotate(-135)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 90) rotate(135)'/%3E%3Cg fill='%2393C5FD' fill-opacity='.45'%3E%3Ccircle cx='60' cy='14' r='1.5'/%3E%3Ccircle cx='60' cy='106' r='1.5'/%3E%3Ccircle cx='14' cy='60' r='1.5'/%3E%3Ccircle cx='106' cy='60' r='1.5'/%3E%3Ccircle cx='52' cy='8' r='1'/%3E%3Ccircle cx='68' cy='8' r='1'/%3E%3Ccircle cx='52' cy='112' r='1'/%3E%3Ccircle cx='68' cy='112' r='1'/%3E%3Ccircle cx='8' cy='52' r='1'/%3E%3Ccircle cx='8' cy='68' r='1'/%3E%3Ccircle cx='112' cy='52' r='1'/%3E%3Ccircle cx='112' cy='68' r='1'/%3E%3C/g%3E%3C/svg%3E"),
+				/* dasar gradasi biru */
+				linear-gradient(135deg, #0D47A1 0%, #0A2F6C 100%);
+			background-size: auto, 120px 120px, auto;
+		}
+
+		/* Garis emas di bawah banner */
+		.content-area .banner::after {
+			content: "";
+			position: absolute;
+			inset: auto 0 0 0;
+			height: 4px;
+			background: linear-gradient(90deg, #F59E0B, #FBBF24 40%, transparent 100%);
+		}
+
+		/* Pastikan teks berada di atas motif */
+		.content-area .banner>* {
+			position: relative;
+			z-index: 1;
+		}
+
+		.content-area .banner h1 {
+			margin: 0;
+			color: #fff;
+			font-weight: 800;
+			letter-spacing: -.02em;
+			line-height: 1.2;
+		}
+
 		.banner h1 {
 			font-size: 24px;
 			font-weight: 600;
@@ -426,6 +466,10 @@
 			inset: 0;
 			background-color: rgba(0, 0, 0, .5);
 			z-index: 999
+		}
+
+		:root {
+			--batik-kawung: url("data:image/svg+xml,...isi SVG yang sama...");
 		}
 
 		/* ── RESPONSIVE ── */
@@ -534,36 +578,36 @@
 
 <body>
 
-<?php
-$current_url = strtolower(trim(uri_string(), '/'));
+	<?php
+	$current_url = strtolower(trim(uri_string(), '/'));
 
-$is_tentang = strpos($current_url, 'admin/tentang') === 0;
-$is_website = strpos($current_url, 'admin/beranda') === 0
-    || strpos($current_url, 'admin/header') === 0
-    || strpos($current_url, 'admin/foot') === 0;
-$is_produk = strpos($current_url, 'admin/kategori') === 0
-    || strpos($current_url, 'admin/produk') === 0;
-?>
+	$is_tentang = strpos($current_url, 'admin/tentang') === 0;
+	$is_website = strpos($current_url, 'admin/beranda') === 0
+		|| strpos($current_url, 'admin/header') === 0
+		|| strpos($current_url, 'admin/foot') === 0;
+	$is_produk = strpos($current_url, 'admin/kategori') === 0
+		|| strpos($current_url, 'admin/produk') === 0;
+	?>
 
-<div class="overlay" id="overlay"></div>
+	<div class="overlay" id="overlay"></div>
 
-<aside class="sidebar" id="sidebar">
-    <div>
-        <div class="sidebar-header">
-            <div class="logo-box">CAB</div>
-            <div class="brand-text">
-                <h2>Citra Abadi<br>Bermartabat</h2>
-                <p>ADMIN</p>
-            </div>
-        </div>
+	<aside class="sidebar" id="sidebar">
+		<div>
+			<div class="sidebar-header">
+				<div class="logo-box">CAB</div>
+				<div class="brand-text">
+					<h2>Citra Abadi<br>Bermartabat</h2>
+					<p>ADMIN</p>
+				</div>
+			</div>
 
-        <ul class="sidebar-menu">
-            <li>
-                <a href="<?= base_url('home') ?>"
-                   class="<?= in_array($current_url, ['home', 'admin/dashboard']) ? 'active' : '' ?>">
-                    <span>Dashboard</span>
-                </a>
-            </li>
+			<ul class="sidebar-menu">
+				<li>
+					<a href="<?= base_url('home') ?>"
+						class="<?= in_array($current_url, ['home', 'admin/dashboard']) ? 'active' : '' ?>">
+						<span>Dashboard</span>
+					</a>
+				</li>
 
 				<li class="menu-dropdown <?= $is_website ? 'open' : '' ?>">
 					<a href="javascript:void(0)" class="dropdown-toggle <?= $is_website ? 'active' : '' ?>">
@@ -578,60 +622,60 @@ $is_produk = strpos($current_url, 'admin/kategori') === 0
 								class="<?= strpos($current_url, 'admin/header') === 0 ? 'active' : '' ?>">Header</a>
 						</li>
 						<li><a href="<?= base_url('admin/foot') ?>"
-							class="<?= strpos($current_url, 'admin/foot') === 0 ? 'active' : '' ?>">Footer</a>
+								class="<?= strpos($current_url, 'admin/foot') === 0 ? 'active' : '' ?>">Footer</a>
 						</li>
 					</ul>
 				</li>
 
-            <li class="menu-dropdown <?= $is_tentang ? 'open' : '' ?>">
-                <a href="javascript:void(0)" class="dropdown-toggle <?= $is_tentang ? 'active' : '' ?>">
-                    <span>Tentang Kami</span>
-                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="<?= base_url('admin/tentang') ?>" class="<?= $current_url === 'admin/tentang' || strpos($current_url, 'admin/tentang/index') === 0 ? 'active' : '' ?>">Tentang Kami</a></li>
-                    <li><a href="<?= base_url('admin/tentang/profil') ?>" class="<?= strpos($current_url, 'admin/tentang/profil') === 0 ? 'active' : '' ?>">Profil Perusahaan</a></li>
-                    <li><a href="<?= base_url('admin/tentang/visi_misi') ?>" class="<?= strpos($current_url, 'admin/tentang/visi_misi') === 0 ? 'active' : '' ?>">Visi &amp; Misi</a></li>
-                </ul>
-            </li>
+				<li class="menu-dropdown <?= $is_tentang ? 'open' : '' ?>">
+					<a href="javascript:void(0)" class="dropdown-toggle <?= $is_tentang ? 'active' : '' ?>">
+						<span>Tentang Kami</span>
+						<i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+					</a>
+					<ul class="submenu">
+						<li><a href="<?= base_url('admin/tentang') ?>" class="<?= $current_url === 'admin/tentang' || strpos($current_url, 'admin/tentang/index') === 0 ? 'active' : '' ?>">Tentang Kami</a></li>
+						<li><a href="<?= base_url('admin/tentang/profil') ?>" class="<?= strpos($current_url, 'admin/tentang/profil') === 0 ? 'active' : '' ?>">Profil Perusahaan</a></li>
+						<li><a href="<?= base_url('admin/tentang/visi_misi') ?>" class="<?= strpos($current_url, 'admin/tentang/visi_misi') === 0 ? 'active' : '' ?>">Visi &amp; Misi</a></li>
+					</ul>
+				</li>
 
-            <li class="menu-dropdown <?= $is_produk ? 'open' : '' ?>">
-                <a href="javascript:void(0)" class="dropdown-toggle <?= $is_produk ? 'active' : '' ?>">
-                    <span>Produk</span>
-                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="<?= base_url('admin/Kategori') ?>" class="<?= strpos($current_url, 'admin/kategori') === 0 ? 'active' : '' ?>">Kategori Produk</a></li>
-                    <li><a href="<?= base_url('admin/produk') ?>" class="<?= strpos($current_url, 'admin/produk') === 0 ? 'active' : '' ?>">Produk</a></li>
-                </ul>
-            </li>
+				<li class="menu-dropdown <?= $is_produk ? 'open' : '' ?>">
+					<a href="javascript:void(0)" class="dropdown-toggle <?= $is_produk ? 'active' : '' ?>">
+						<span>Produk</span>
+						<i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+					</a>
+					<ul class="submenu">
+						<li><a href="<?= base_url('admin/Kategori') ?>" class="<?= strpos($current_url, 'admin/kategori') === 0 ? 'active' : '' ?>">Kategori Produk</a></li>
+						<li><a href="<?= base_url('admin/produk') ?>" class="<?= strpos($current_url, 'admin/produk') === 0 ? 'active' : '' ?>">Produk</a></li>
+					</ul>
+				</li>
 
-            <li><a href="#"><span>Informasi</span></a></li>
-            <li><a href="#"><span>Jajaran Anggota Struktur</span></a></li>
-            <li><a href="#"><span>Fasilitas</span></a></li>
-            <li><a href="#"><span>Kontak</span></a></li>
-            <li><a href="#"><span>Story</span></a></li>
-        </ul>
-    </div>
+				<li><a href="#"><span>Informasi</span></a></li>
+				<li><a href="#"><span>Jajaran Anggota Struktur</span></a></li>
+				<li><a href="#"><span>Fasilitas</span></a></li>
+				<li><a href="#"><span>Kontak</span></a></li>
+				<li><a href="#"><span>Story</span></a></li>
+			</ul>
+		</div>
 
-    <div class="sidebar-footer">
-        <a href="<?= base_url('auth/logout') ?>">
-            <span><i class="fa-solid fa-right-from-bracket"></i>&nbsp; LOGOUT</span>
-            <span class="dot"></span>
-        </a>
-    </div>
-</aside>
+		<div class="sidebar-footer">
+			<a href="<?= base_url('auth/logout') ?>">
+				<span><i class="fa-solid fa-right-from-bracket"></i>&nbsp; LOGOUT</span>
+				<span class="dot"></span>
+			</a>
+		</div>
+	</aside>
 
-<main class="main-content">
-    <header class="top-bar">
-        <div style="display:flex;align-items:center;width:100%;gap:15px">
-            <button class="menu-toggle" id="menuToggle" type="button">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Cari modul, SKU, dokumen...">
-            </div>
-        </div>
-        <button class="btn-profil" type="button">Profil</button>
-    </header>
+	<main class="main-content">
+		<header class="top-bar">
+			<div style="display:flex;align-items:center;width:100%;gap:15px">
+				<button class="menu-toggle" id="menuToggle" type="button">
+					<i class="fa-solid fa-bars"></i>
+				</button>
+				<div class="search-container">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<input type="text" placeholder="Cari modul, SKU, dokumen...">
+				</div>
+			</div>
+			<button class="btn-profil" type="button">Profil</button>
+		</header>

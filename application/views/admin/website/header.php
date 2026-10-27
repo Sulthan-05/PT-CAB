@@ -7,11 +7,25 @@ $tgl = (!empty($header->updated_at)) ? date('d-m-Y H:i', strtotime($header->upda
         position: relative;
         overflow: hidden;
         color: #fff;
-        background: linear-gradient(135deg, #0A2F6C 0%, #0D47A1 55%, #1565C0 100%);
         padding: clamp(18px, 4vw, 30px) clamp(18px, 4vw, 35px);
         border-radius: 14px;
         margin-bottom: 18px;
-        box-shadow: 0 4px 15px rgba(10, 47, 108, .15)
+        box-shadow: 0 4px 15px rgba(10, 47, 108, .15);
+        background-color: #0A2F6C;
+        background-image:
+            /* lapisan gelap tipis di kiri agar teks tetap terbaca */
+            linear-gradient(90deg, rgba(10, 47, 108, .85) 0%, rgba(10, 47, 108, .45) 55%, rgba(10, 47, 108, 0) 100%),
+            /* motif batik kawung */
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='120' height='120' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cg id='f'%3E%3Cg fill='none' stroke='%2393C5FD' stroke-opacity='.55' stroke-width='1.3'%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(288)'/%3E%3C/g%3E%3Cg fill='%23FBBF24' fill-opacity='.8'%3E%3Ccircle cx='0' cy='-21' r='1.7'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(72)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(144)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(216)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(288)'/%3E%3Ccircle r='4.5'/%3E%3C/g%3E%3Ccircle r='8.5' fill='none' stroke='%23FBBF24' stroke-opacity='.65' stroke-width='1' stroke-dasharray='1.5 3'/%3E%3C/g%3E%3Cg id='l' fill='none' stroke='%2393C5FD' stroke-opacity='.5' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M0,-20 C11,-9 11,9 0,20 C-11,9 -11,-9 0,-20Z'/%3E%3Cpath d='M0,-15 L0,15'/%3E%3Cpath d='M0,-7 L6,-12 M0,1 L7,-4 M0,9 L5,5 M0,-7 L-6,-12 M0,1 L-7,-4 M0,9 L-5,5'/%3E%3C/g%3E%3C/defs%3E%3Cuse xlink:href='%23f' transform='translate(60 60)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 120) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 120) scale(.62)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 30) rotate(-45)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 30) rotate(45)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 90) rotate(-135)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 90) rotate(135)'/%3E%3Cg fill='%2393C5FD' fill-opacity='.45'%3E%3Ccircle cx='60' cy='14' r='1.5'/%3E%3Ccircle cx='60' cy='106' r='1.5'/%3E%3Ccircle cx='14' cy='60' r='1.5'/%3E%3Ccircle cx='106' cy='60' r='1.5'/%3E%3Ccircle cx='52' cy='8' r='1'/%3E%3Ccircle cx='68' cy='8' r='1'/%3E%3Ccircle cx='52' cy='112' r='1'/%3E%3Ccircle cx='68' cy='112' r='1'/%3E%3Ccircle cx='8' cy='52' r='1'/%3E%3Ccircle cx='8' cy='68' r='1'/%3E%3Ccircle cx='112' cy='52' r='1'/%3E%3Ccircle cx='112' cy='68' r='1'/%3E%3C/g%3E%3C/svg%3E"),
+            /* dasar gradasi biru */
+            linear-gradient(135deg, #0A2F6C 0%, #0D47A1 55%, #1565C0 100%);
+        background-size: auto, 120px 120px, auto;
+    }
+
+    /* Teks di atas motif */
+    .adm-hero>* {
+        position: relative;
+        z-index: 1;
     }
 
     .adm-hero::after {
@@ -434,7 +448,7 @@ $tgl = (!empty($header->updated_at)) ? date('d-m-Y H:i', strtotime($header->upda
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var form = document.getElementById('formHeader');
         var btnSimpan = document.getElementById('btnSimpan');
         var btnReset = document.getElementById('btnReset');
@@ -447,16 +461,19 @@ $tgl = (!empty($header->updated_at)) ? date('d-m-Y H:i', strtotime($header->upda
 
         // Nilai awal (untuk deteksi perubahan & tombol Batalkan)
         var awal = {};
-        fields.forEach(function (f) { awal[f.name] = f.value; });
+        fields.forEach(function(f) {
+            awal[f.name] = f.value;
+        });
 
         // Penghitung karakter
-        fields.forEach(function (f) {
+        fields.forEach(function(f) {
             var foot = f.parentNode.querySelector('.fld-foot');
             var c = document.createElement('span');
             c.className = 'fld-counter';
             foot.appendChild(c);
             f._counter = c;
         });
+
         function hitung(f) {
             var max = parseInt(f.getAttribute('maxlength'), 10);
             f._counter.textContent = f.value.length + '/' + max;
@@ -465,62 +482,98 @@ $tgl = (!empty($header->updated_at)) ? date('d-m-Y H:i', strtotime($header->upda
 
         // Cek URL langsung (server tetap memeriksa ulang)
         function urlValid(v) {
-            if (v === '') { return false; }
-            if (/\s/.test(v)) { return false; }
-            if (v.charAt(0) === '/' && v.charAt(1) !== '/') { return true; }
+            if (v === '') {
+                return false;
+            }
+            if (/\s/.test(v)) {
+                return false;
+            }
+            if (v.charAt(0) === '/' && v.charAt(1) !== '/') {
+                return true;
+            }
             return /^https?:\/\/[^\s\/$.?#][^\s]*$/i.test(v);
         }
+
         function cekUrl() {
             var v = urlInput.value.trim();
-            if (v === '') { urlMsg.className = 'fld-msg'; urlMsg.textContent = urlHint; urlInput.setCustomValidity(''); return; }
+            if (v === '') {
+                urlMsg.className = 'fld-msg';
+                urlMsg.textContent = urlHint;
+                urlInput.setCustomValidity('');
+                return;
+            }
             if (urlValid(v)) {
-                urlMsg.className = 'fld-msg ok'; urlMsg.textContent = '✔ Format link sudah benar'; urlInput.setCustomValidity('');
+                urlMsg.className = 'fld-msg ok';
+                urlMsg.textContent = '✔ Format link sudah benar';
+                urlInput.setCustomValidity('');
             } else {
-                urlMsg.className = 'fld-msg bad'; urlMsg.textContent = '✖ Harus diawali http://, https://, atau path seperti /produk (tanpa spasi)';
+                urlMsg.className = 'fld-msg bad';
+                urlMsg.textContent = '✖ Harus diawali http://, https://, atau path seperti /produk (tanpa spasi)';
                 urlInput.setCustomValidity('Format URL tidak valid');
             }
         }
 
         function dirty() {
-            return fields.some(function (f) { return f.value !== awal[f.name]; });
+            return fields.some(function(f) {
+                return f.value !== awal[f.name];
+            });
         }
+
         function perbarui() {
             var d = dirty();
             chipDirty.style.display = d ? 'inline-block' : 'none';
             btnReset.disabled = !d;
         }
-        fields.forEach(function (f) {
+        fields.forEach(function(f) {
             hitung(f);
-            f.addEventListener('input', function () {
-                hitung(f); if (f === urlInput) { cekUrl(); } perbarui();
+            f.addEventListener('input', function() {
+                hitung(f);
+                if (f === urlInput) {
+                    cekUrl();
+                }
+                perbarui();
                 f.classList.remove('is-invalid');
             });
         });
-        cekUrl(); perbarui();
+        cekUrl();
+        perbarui();
 
         // Batalkan perubahan
-        btnReset.addEventListener('click', function () {
-            fields.forEach(function (f) { f.value = awal[f.name]; f.classList.remove('is-invalid'); hitung(f); });
-            cekUrl(); perbarui();
+        btnReset.addEventListener('click', function() {
+            fields.forEach(function(f) {
+                f.value = awal[f.name];
+                f.classList.remove('is-invalid');
+                hitung(f);
+            });
+            cekUrl();
+            perbarui();
         });
 
         // Peringatan sebelum meninggalkan halaman
-        window.addEventListener('beforeunload', function (e) {
-            if (dirty() && !submitting) { e.preventDefault(); e.returnValue = ''; }
+        window.addEventListener('beforeunload', function(e) {
+            if (dirty() && !submitting) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
         });
 
         // Submit: cek isian dulu, lalu tampilkan status "Menyimpan..."
         var teksAwal = btnSimpan.innerHTML;
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', function(e) {
             var salah = null;
-            fields.forEach(function (f) {
+            fields.forEach(function(f) {
                 f.value = f.value.trim();
-                if (!f.checkValidity() && !salah) { salah = f; }
+                if (!f.checkValidity() && !salah) {
+                    salah = f;
+                }
                 f.classList.toggle('is-invalid', !f.checkValidity());
             });
             if (salah) {
                 e.preventDefault();
-                salah.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                salah.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
                 salah.focus();
                 return;
             }
@@ -528,39 +581,56 @@ $tgl = (!empty($header->updated_at)) ? date('d-m-Y H:i', strtotime($header->upda
             btnSimpan.disabled = true;
             btnSimpan.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span>Menyimpan...</span>';
         });
-        window.addEventListener('pageshow', function () {
-            submitting = false; btnSimpan.disabled = false; btnSimpan.innerHTML = teksAwal;
+        window.addEventListener('pageshow', function() {
+            submitting = false;
+            btnSimpan.disabled = false;
+            btnSimpan.innerHTML = teksAwal;
         });
 
         // Preview memakai nilai TERBARU dari form
         var modalEl = document.getElementById('previewModal');
-        document.getElementById('btnPreview').addEventListener('click', function () {
+        document.getElementById('btnPreview').addEventListener('click', function() {
             document.getElementById('pvNama').textContent = document.getElementById('inNama').value;
             document.getElementById('pvCta').textContent = document.getElementById('inCtaText').value;
             document.getElementById('pvUrl').textContent = urlInput.value;
             bootstrap.Modal.getOrCreateInstance(modalEl).show();
         });
         // Simpan dari dalam preview (hanya jika diklik)
-        document.getElementById('btnSimpanModal').addEventListener('click', function () {
+        document.getElementById('btnSimpanModal').addEventListener('click', function() {
             bootstrap.Modal.getOrCreateInstance(modalEl).hide();
-            if (form.requestSubmit) { form.requestSubmit(btnSimpan); } else { btnSimpan.click(); }
+            if (form.requestSubmit) {
+                form.requestSubmit(btnSimpan);
+            } else {
+                btnSimpan.click();
+            }
         });
 
         // Ctrl+S untuk menyimpan
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
                 e.preventDefault();
-                if (form.requestSubmit) { form.requestSubmit(btnSimpan); } else { btnSimpan.click(); }
+                if (form.requestSubmit) {
+                    form.requestSubmit(btnSimpan);
+                } else {
+                    btnSimpan.click();
+                }
             }
         });
 
         // Alert hilang otomatis
-        document.querySelectorAll('.js-auto-alert').forEach(function (el) {
-            setTimeout(function () { bootstrap.Alert.getOrCreateInstance(el).close(); }, 4000);
+        document.querySelectorAll('.js-auto-alert').forEach(function(el) {
+            setTimeout(function() {
+                bootstrap.Alert.getOrCreateInstance(el).close();
+            }, 4000);
         });
         // Jika validasi server gagal, gulir ke pesan error
         var se = document.getElementById('serverError');
-        if (se) { se.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        if (se) {
+            se.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
     });
 </script>
 <?php include(APPPATH . 'views/layout/foot.php'); ?>

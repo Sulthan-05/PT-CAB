@@ -16,18 +16,45 @@
     }
 
     /* HEADER HALAMAN */
+    /* HEADER HALAMAN */
     .profil-header {
-        background: linear-gradient(135deg, #1c3faa, #2a5298);
+        position: relative;
+        overflow: hidden;
         color: #ffffff;
         padding: 30px 35px;
         border-radius: 12px;
         margin-bottom: 25px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 15px rgba(10, 47, 108, 0.15);
 
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 20px;
+
+        background-color: #0A2F6C;
+        background-image:
+            /* lapisan gelap tipis di kiri agar teks tetap terbaca */
+            linear-gradient(90deg, rgba(10, 47, 108, .85) 0%, rgba(10, 47, 108, .45) 55%, rgba(10, 47, 108, 0) 100%),
+            /* motif batik kawung */
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='120' height='120' viewBox='0 0 120 120'%3E%3Cdefs%3E%3Cg id='f'%3E%3Cg fill='none' stroke='%2393C5FD' stroke-opacity='.55' stroke-width='1.3'%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-17' rx='8' ry='14' transform='rotate(288)'/%3E%3C/g%3E%3Cg fill='%23FBBF24' fill-opacity='.8'%3E%3Ccircle cx='0' cy='-21' r='1.7'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(72)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(144)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(216)'/%3E%3Ccircle cx='0' cy='-21' r='1.7' transform='rotate(288)'/%3E%3Ccircle r='4.5'/%3E%3C/g%3E%3Ccircle r='8.5' fill='none' stroke='%23FBBF24' stroke-opacity='.65' stroke-width='1' stroke-dasharray='1.5 3'/%3E%3C/g%3E%3Cg id='l' fill='none' stroke='%2393C5FD' stroke-opacity='.5' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M0,-20 C11,-9 11,9 0,20 C-11,9 -11,-9 0,-20Z'/%3E%3Cpath d='M0,-15 L0,15'/%3E%3Cpath d='M0,-7 L6,-12 M0,1 L7,-4 M0,9 L5,5 M0,-7 L-6,-12 M0,1 L-7,-4 M0,9 L-5,5'/%3E%3C/g%3E%3C/defs%3E%3Cuse xlink:href='%23f' transform='translate(60 60)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 0) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(0 120) scale(.62)'/%3E%3Cuse xlink:href='%23f' transform='translate(120 120) scale(.62)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 30) rotate(-45)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 30) rotate(45)'/%3E%3Cuse xlink:href='%23l' transform='translate(30 90) rotate(-135)'/%3E%3Cuse xlink:href='%23l' transform='translate(90 90) rotate(135)'/%3E%3Cg fill='%2393C5FD' fill-opacity='.45'%3E%3Ccircle cx='60' cy='14' r='1.5'/%3E%3Ccircle cx='60' cy='106' r='1.5'/%3E%3Ccircle cx='14' cy='60' r='1.5'/%3E%3Ccircle cx='106' cy='60' r='1.5'/%3E%3Ccircle cx='52' cy='8' r='1'/%3E%3Ccircle cx='68' cy='8' r='1'/%3E%3Ccircle cx='52' cy='112' r='1'/%3E%3Ccircle cx='68' cy='112' r='1'/%3E%3Ccircle cx='8' cy='52' r='1'/%3E%3Ccircle cx='8' cy='68' r='1'/%3E%3Ccircle cx='112' cy='52' r='1'/%3E%3Ccircle cx='112' cy='68' r='1'/%3E%3C/g%3E%3C/svg%3E"),
+            /* dasar gradasi biru */
+            linear-gradient(135deg, #0D47A1 0%, #0A2F6C 100%);
+        background-size: auto, 120px 120px, auto;
+    }
+
+    /* Garis emas di bawah header */
+    .profil-header::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 4px;
+        /* background: linear-gradient(90deg, #F59E0B, #FBBF24 40%, transparent 100%); */
+    }
+
+    /* Teks dan tombol berada di atas motif */
+    .profil-header>* {
+        position: relative;
+        z-index: 1;
     }
 
     .profil-header-text h1 {
@@ -468,7 +495,7 @@
                             </td>
                         </tr>
 
-                        <?php $no++;
+                    <?php $no++;
                     } ?>
                 </tbody>
 
@@ -691,6 +718,6 @@ foreach ($tentang as $ttg) { ?>
 
         </div>
     </div>
-    <?php $no++;
+<?php $no++;
 } ?>
 <?php include(APPPATH . 'views/layout/foot.php'); ?>
