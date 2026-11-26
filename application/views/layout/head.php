@@ -650,9 +650,31 @@
 					</ul>
 				</li>
 
-				<li><a href="#"><span>Informasi</span></a></li>
-				<li><a href="#"><span>Jajaran Anggota Struktur</span></a></li>
-				<li><a href="#"><span>Fasilitas</span></a></li>
+				<li>
+					<a href="<?= base_url('admin/informasi') ?>"
+					class="<?= $this->uri->segment(2) === 'informasi' ? 'active' : '' ?>">
+						<span>Informasi</span>
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a href="<?= site_url('admin/anggota_struktur'); ?>"
+					class="nav-link <?= $this->uri->segment(2) == 'anggota_struktur' ? 'active' : ''; ?>">
+					
+						<span>Jajaran Anggota Struktur</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="<?= site_url('admin/fasilitas'); ?>"
+					class="nav-link <?= $this->uri->segment(2) == 'fasilitas' ? 'active' : ''; ?>">
+						<span>Fasilitas</span>
+					</a>
+				</li>
+
+				<!-- <li><a href="#"><span>Informasi</span></a></li> -->
+				<!-- <li><a href="#"><span>Jajaran Anggota Struktur</span></a></li> -->
+				<!-- <li><a href="#"><span>Fasilitas</span></a></li> -->
 				<li><a href="#"><span>Kontak</span></a></li>
 				<li><a href="#"><span>Story</span></a></li>
 			</ul>
